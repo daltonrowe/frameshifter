@@ -1,0 +1,20 @@
+{
+    "username": "drowe",
+    "password": "o7",
+    "journalDir": "C:\\Users\\drowe\\Saved Games\\Frontier Developments\\Elite Dangerous",
+    "serverPort": "3307",
+    "frames": [
+        {
+            "name": "eddb.io",
+            "icon": "planet",
+            "type": "iframe",
+            "iframeUrl": "https://daltonrowe.com"
+        },
+        {
+            "name": "Dev Scanner",
+            "icon": "radar",
+            "type": "internal",
+            "slug": "dev-scanner"
+        }
+    ]
+}

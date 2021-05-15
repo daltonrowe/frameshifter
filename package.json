@@ -1,0 +1,15 @@
+{
+  "name": "frameshifterjs",
+  "version": "1.0.0",
+  "description": "Elite Dangerous JS tools",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Dalton Rowe",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.1.1"
+  }
+}
