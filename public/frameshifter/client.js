@@ -7,7 +7,7 @@ const socket = io(window.location.href);
 socket.connect();
 
 socket.onAny((event, data) => {
-  console.log(event);
+  console.log(event, data);
 
   // react to status updates and set global data
   if (event.includes("UPDATE_")) {
@@ -17,13 +17,13 @@ socket.onAny((event, data) => {
 
   // react to journal updates and trim log
   if (event.includes("JOURNAL_")) {
-    window.frameShifterJournal.push(event.detail);
+    window.frameShifterJournal.unshift(data);
 
     if (
       window.frameShifterJournal.length >
       window.frameShifterConfig.journalMaxLines
     ) {
-      window.frameShifterJournal.shift();
+      window.frameShifterJournal.pop();
     }
 
     // trigger generic journal event

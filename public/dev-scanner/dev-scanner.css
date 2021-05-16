@@ -7,14 +7,15 @@
 }
 
 .dev-scanner-output {
-    height:100px;
+    height:500px;
     width:100%;
     margin:10px 0;
     border:1px solid green;
     overflow-y:scroll;
+    resize:vertical
 }
 
 .dev-scanner-output.collapsed {
-    height:20px;
+    height:35px;
     overflow: hidden;
 }

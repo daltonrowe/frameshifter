@@ -20,6 +20,7 @@ const outfittingOut = document.querySelector("#dev-scanner-outfitting");
 const shipyardOut = document.querySelector("#dev-scanner-shipyard");
 
 window.addEventListener("UPDATE_JOURNAL", () => {
+  console.log("updating");
   journalOut.textContent = JSON.stringify(window.frameShifterJournal, null, 2);
 });
 

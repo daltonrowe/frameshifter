@@ -130,10 +130,10 @@ const checkJournalFiles = () => {
 
     journalWatcher.on("line", (line) => {
       const eventData = JSON.parse(line);
-      playerJournal.push(eventData);
+      playerJournal.unshift(eventData);
       io.emit(`JOURNAL_${eventData.event.toUpperCase()}`, eventData);
       fslog("Player journal updated.");
-      if (playerJournal.length > config.journalMaxLines) playerJournal.shift();
+      if (playerJournal.length > config.journalMaxLines) playerJournal.pop();
     });
 
     journalWatcher.watch();
