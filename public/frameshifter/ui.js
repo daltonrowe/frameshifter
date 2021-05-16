@@ -105,6 +105,7 @@ const createFrames = async (frames) => {
 
 const frameActivations = {
   loadIframe: (frameEl) => {
+    if (frameEl.querySelector("iframe")) return;
     const iframe = document.createElement("IFRAME");
     iframe.src = frameEl.dataset.iframeUrl;
 

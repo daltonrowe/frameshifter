@@ -1,21 +1,30 @@
 #dev-scanner {
-    padding:20px;
+    height:100%;
+    padding:0 20px;
+    overflow-y: scroll;
 }
 
 .dev-scanner-collapse-next {
     cursor: pointer;
 }
 
+.dev-scanner-collapse-next:hover + .dev-scanner-output {
+    background:rgba(255,255,255,0.1);
+    border:1px solid #eee;
+}
+
 .dev-scanner-output {
-    height:500px;
-    width:100%;
+    height:auto;
+    max-height:none;
     margin:10px 0;
-    border:1px solid green;
+    border:1px solid #999;
     overflow-y:scroll;
-    resize:vertical
+    resize:vertical;
+    color:#999;
 }
 
 .dev-scanner-output.collapsed {
-    height:35px;
+    max-height:35px;
     overflow: hidden;
+    resize:none;
 }
