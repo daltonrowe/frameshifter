@@ -2,16 +2,27 @@
     "username": "drowe",
     "password": "o7",
     "journalDir": "C:\\Users\\drowe\\Saved Games\\Frontier Developments\\Elite Dangerous",
-    "serverPort": "3307",
+    "journalMaxLines": 50,
+    "journalCheckMins": 3,
+    "statusCheckSecs": 2,
+    "serverPort": 3307,
     "frames": [
         {
-            "name": "eddb.io",
-            "icon": "planet",
+            "name": "Coriolis Shipyard",
+            "desc": "iFrame view for Coriolis Shipyard app",
+            "icon": "rocket",
             "type": "iframe",
-            "iframeUrl": "https://daltonrowe.com"
+            "iframeUrl": "https://coriolis.io/"
+        },
+        {
+            "name": "edcss",
+            "desc": "Provides basic app theme and styles",
+            "type": "internal",
+            "slug": "edcss"
         },
         {
             "name": "Dev Scanner",
+            "desc": "Inspect E:D data as collected by FrameShifter",
             "icon": "radar",
             "type": "internal",
             "slug": "dev-scanner"

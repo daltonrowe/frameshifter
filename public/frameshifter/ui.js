@@ -1,17 +1,19 @@
 const insertFrame = async (frame, frameEl) => {
-  const iconEl = document.createElement("LI");
-  iconEl.dataset.activateFrame = frameEl.id;
-
-  const iconImageEl = document.createElement("IMG");
-  iconImageEl.src = `/icons/${frame.icon}.svg`;
-  iconImageEl.style.pointerEvents = "none";
-
   const main = document.querySelector("#frame-window");
   main.appendChild(frameEl);
 
-  iconEl.appendChild(iconImageEl);
-  const sidebar = document.querySelector("#sidebar");
-  sidebar.appendChild(iconEl);
+  if (frame.icon) {
+    const iconEl = document.createElement("LI");
+    iconEl.dataset.activateFrame = frameEl.id;
+
+    const iconImageEl = document.createElement("IMG");
+    iconImageEl.src = `/icons/${frame.icon}.svg`;
+    iconImageEl.style.pointerEvents = "none";
+
+    iconEl.appendChild(iconImageEl);
+    const sidebar = document.querySelector("#sidebar");
+    sidebar.appendChild(iconEl);
+  }
 
   const scripts = frameEl.querySelectorAll("script");
   if (scripts)
@@ -22,8 +24,9 @@ const insertFrame = async (frame, frameEl) => {
       console.log(`Executing script for frame "${frame.name}": ${script.src}`);
       try {
         eval(scriptText);
-      } catch {
-        console.log(`Error executing ${script.src}`);
+      } catch (err) {
+        console.warn(`Error executing ${script.src}`);
+        console.error(error);
       }
     });
 };
@@ -80,8 +83,6 @@ const createUiEls = () => {
 
 const createFrames = async (frames) => {
   frames.forEach(async (frame) => {
-    console.log(frame);
-
     switch (frame.type) {
       case "iframe":
         handleIframe(frame);
@@ -102,7 +103,6 @@ const createFrames = async (frames) => {
 
 const frameActivations = {
   loadIframe: (frameEl) => {
-    console.log("loadIframe!:", frameEl);
     const iframe = document.createElement("IFRAME");
     iframe.src = frameEl.dataset.iframeUrl;
 
@@ -116,7 +116,6 @@ const activateFrame = (iconEl) => {
 
   const nextFrame = document.querySelector(`#${iconEl.dataset.activateFrame}`);
 
-  console.log("hey");
   if (
     nextFrame.dataset.activateAction &&
     Object.keys(frameActivations).includes(nextFrame.dataset.activateAction)
