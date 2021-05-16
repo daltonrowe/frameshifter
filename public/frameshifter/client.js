@@ -1,4 +1,4 @@
-window.frameShifterData = {};
+window.frameShifterState = {};
 window.frameShifterJournal = [];
 window.frameShifterConfig = {};
 window.frameShifterStarted = false;
@@ -12,7 +12,7 @@ socket.onAny((event, data) => {
   // react to status updates and set global data
   if (event.includes("UPDATE_")) {
     const property = event.replace("UPDATE_", "").toLowerCase();
-    window.frameShifterData[property] = data;
+    window.frameShifterState[property] = data;
   }
 
   // react to journal updates and trim log
@@ -35,7 +35,7 @@ socket.onAny((event, data) => {
   }
 
   // handle current info overwrites
-  if (event === "CURRENT_STATE") window.frameShifterData = data;
+  if (event === "CURRENT_STATE") window.frameShifterState = data;
   if (event === "CURRENT_JOURNAL") window.frameShifterJournal = data;
   if (event === "CURRENT_CONFIG") window.frameShifterConfig = data;
 

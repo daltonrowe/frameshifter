@@ -28,43 +28,55 @@ journalOut.dataset.lastUpdate = `${Date.now()}`;
 
 window.addEventListener("UPDATE_STATUS", () => {
   statusOut.textContent = JSON.stringify(
-    window.frameShifterData.status,
+    window.frameShifterState.status,
     null,
     2
   );
 });
 
-statusOut.textContent = JSON.stringify(window.frameShifterData.status, null, 2);
+statusOut.textContent = JSON.stringify(
+  window.frameShifterState.status,
+  null,
+  2
+);
 statusOut.dataset.lastUpdate = `${Date.now()}`;
 
 window.addEventListener("UPDATE_CARGO", () => {
-  cargoOut.textContent = JSON.stringify(window.frameShifterData.cargo, null, 2);
+  cargoOut.textContent = JSON.stringify(
+    window.frameShifterState.cargo,
+    null,
+    2
+  );
 });
 
-cargoOut.textContent = JSON.stringify(window.frameShifterData.cargo, null, 2);
+cargoOut.textContent = JSON.stringify(window.frameShifterState.cargo, null, 2);
 cargoOut.dataset.lastUpdate = `${Date.now()}`;
 
 window.addEventListener("UPDATE_MARKET", () => {
   marketOut.textContent = JSON.stringify(
-    window.frameShifterData.market,
+    window.frameShifterState.market,
     null,
     2
   );
 });
 
-marketOut.textContent = JSON.stringify(window.frameShifterData.market, null, 2);
+marketOut.textContent = JSON.stringify(
+  window.frameShifterState.market,
+  null,
+  2
+);
 marketOut.dataset.lastUpdate = `${Date.now()}`;
 
 window.addEventListener("UPDATE_MODULESINFO", () => {
   modulesinfoOut.textContent = JSON.stringify(
-    window.frameShifterData.modulesinfo,
+    window.frameShifterState.modulesinfo,
     null,
     2
   );
 });
 
 modulesinfoOut.textContent = JSON.stringify(
-  window.frameShifterData.modulesinfo,
+  window.frameShifterState.modulesinfo,
   null,
   2
 );
@@ -72,14 +84,14 @@ modulesinfoOut.dataset.lastUpdate = `${Date.now()}`;
 
 window.addEventListener("UPDATE_NAVROUTE", () => {
   navrouteOut.textContent = JSON.stringify(
-    window.frameShifterData.navroute,
+    window.frameShifterState.navroute,
     null,
     2
   );
 });
 
 navrouteOut.textContent = JSON.stringify(
-  window.frameShifterData.navroute,
+  window.frameShifterState.navroute,
   null,
   2
 );
@@ -87,14 +99,14 @@ navrouteOut.dataset.lastUpdate = `${Date.now()}`;
 
 window.addEventListener("UPDATE_OUTFITTING", () => {
   outfittingOut.textContent = JSON.stringify(
-    window.frameShifterData.outfitting,
+    window.frameShifterState.outfitting,
     null,
     2
   );
 });
 
 outfittingOut.textContent = JSON.stringify(
-  window.frameShifterData.outfitting,
+  window.frameShifterState.outfitting,
   null,
   2
 );
@@ -102,14 +114,14 @@ outfittingOut.dataset.lastUpdate = `${Date.now()}`;
 
 window.addEventListener("UPDATE_SHIPYARD", () => {
   shipyardOut.textContent = JSON.stringify(
-    window.frameShifterData.shipyard,
+    window.frameShifterState.shipyard,
     null,
     2
   );
 });
 
 shipyardOut.textContent = JSON.stringify(
-  window.frameShifterData.shipyard,
+  window.frameShifterState.shipyard,
   null,
   2
 );
