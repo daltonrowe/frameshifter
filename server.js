@@ -1,7 +1,23 @@
+// read user config file
 const config = require("./config.json");
 
+// custom logging function for config controls
 const fslog = (...args) => {
-  if (config.logging === "debug") fslog(...args);
+  if (config.logging === "debug") console.log(...args);
+};
+
+const fswarn = (...args) => {
+  if (config.logging === "debug" || console.logging === "warning")
+    console.warn(...args);
+};
+
+const fserror = (...args) => {
+  if (
+    config.logging === "debug" ||
+    console.logging === "warning" ||
+    console.logging === "error"
+  )
+    console.error(...args);
 };
 
 // express webserver
@@ -64,6 +80,17 @@ const playerJournal = [];
 
 const watchPlayerFile = (file, property) => {
   playerData[property] = {};
+
+  // check for file on first load
+  if (fs.existsSync(file)) {
+    fs.readFile(file, "utf8", (err, data) => {
+      if (err) {
+        fserror(err);
+        return;
+      }
+      playerData[property] = JSON.parse(data);
+    });
+  }
 
   fs.watchFile(
     file,
