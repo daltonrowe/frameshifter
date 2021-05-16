@@ -27,10 +27,12 @@ body {
 }
 
 #sidebar li img {
+    padding:10px;
     width:100%;
     height:100%;
     object-fit: contain;
     object-position: center center;
+    filter: brightness(0);
 }
 
 #sidebar li:not(:last-of-type) {

@@ -7,11 +7,12 @@ const insertFrame = async (frame, frameEl) => {
     iconEl.dataset.activateFrame = frameEl.id;
 
     const iconImageEl = document.createElement("IMG");
-    iconImageEl.src = `/icons/${frame.icon}.svg`;
+    iconImageEl.src = frame.icon;
     iconImageEl.style.pointerEvents = "none";
 
     iconEl.appendChild(iconImageEl);
     const sidebar = document.querySelector("#sidebar");
+    console.log("append icon", iconEl);
     sidebar.appendChild(iconEl);
   }
 
@@ -42,7 +43,7 @@ const handleInternal = async (frame) => {
   const id = `frame-iframe-${Date.now()}`;
 
   const frameEl = document.createElement("SECTION");
-  frameEl.dataset.activateAction = "sendEvent";
+  frameEl.dataset.activateAction = "defaultAction";
   frameEl.id = id;
 
   const frameResponse = await fetch(`/${frame.slug}/index.html`);
@@ -50,10 +51,10 @@ const handleInternal = async (frame) => {
 
   frameEl.innerHTML = frameMarkup;
 
-  insertFrame(frame, frameEl);
+  await insertFrame(frame, frameEl);
 };
 
-const handleIframe = (frame) => {
+const handleIframe = async (frame) => {
   if (!frame.iframeUrl) {
     console.error(
       `Frame "${frame.name}" of type "iframe" must have an "iframeUrl" property in config.json `
@@ -68,7 +69,7 @@ const handleIframe = (frame) => {
   frameEl.dataset.iframeUrl = frame.iframeUrl;
   frameEl.id = id;
 
-  insertFrame(frame, frameEl);
+  await insertFrame(frame, frameEl);
 };
 
 const createUiEls = () => {
@@ -82,10 +83,11 @@ const createUiEls = () => {
 };
 
 const createFrames = async (frames) => {
-  frames.forEach(async (frame) => {
+  for (let i = 0; i < frames.length; i++) {
+    const frame = frames[i];
     switch (frame.type) {
       case "iframe":
-        handleIframe(frame);
+        await handleIframe(frame);
         break;
 
       case "internal":
@@ -98,7 +100,7 @@ const createFrames = async (frames) => {
         );
         break;
     }
-  });
+  }
 };
 
 const frameActivations = {
@@ -107,6 +109,10 @@ const frameActivations = {
     iframe.src = frameEl.dataset.iframeUrl;
 
     frameEl.appendChild(iframe);
+  },
+  defaultAction: (_frameEl) => {
+    console.log("do it!");
+    // do nothing!
   },
 };
 
@@ -123,6 +129,12 @@ const activateFrame = (iconEl) => {
     frameActivations[nextFrame.dataset.activateAction](nextFrame);
   }
 
+  const frameActivationEvent = new CustomEvent("ACTIVATE_FRAME", {
+    detail: nextFrame.id,
+  });
+
+  window.dispatchEvent(frameActivationEvent);
+
   nextFrame.classList.add("active");
 };
 
@@ -130,6 +142,8 @@ const attachFrameActivation = () => {
   const icons = document.querySelectorAll("#sidebar li");
 
   icons.forEach((icon) => {
+    console.log("attaching", icon);
+
     icon.addEventListener("click", (event) => {
       const { target } = event;
       if (!target || !target.dataset.activateFrame) return;
