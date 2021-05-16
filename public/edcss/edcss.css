@@ -11,7 +11,6 @@
 body {
   background-color: var(--bg);
   position: relative;
-  margin:20px;
   color:var(--text);
   font-family: sans-serif;
 }
@@ -22,7 +21,7 @@ body {
   left: 0;
   width: 80px;
   background-color: var(--bg-light);
-  height: calc(100vh - 40px);
+  height: 100vh;
   padding: 10px;
 
   display: flex;
@@ -53,7 +52,7 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  height: calc(100vh - 40px);
+  height: 100vh;
   overflow:hidden;
 }
 

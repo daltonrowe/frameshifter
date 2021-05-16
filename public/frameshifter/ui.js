@@ -12,7 +12,6 @@ const insertFrame = async (frame, frameEl) => {
 
     iconEl.appendChild(iconImageEl);
     const sidebar = document.querySelector("#sidebar");
-    console.log("append icon", iconEl);
     sidebar.appendChild(iconEl);
   }
 
@@ -112,7 +111,6 @@ const frameActivations = {
     frameEl.appendChild(iframe);
   },
   defaultAction: (_frameEl) => {
-    console.log("do it!");
     // do nothing!
   },
 };
@@ -143,8 +141,6 @@ const attachFrameActivation = () => {
   const icons = document.querySelectorAll("#sidebar li");
 
   icons.forEach((icon) => {
-    console.log("attaching", icon);
-
     icon.addEventListener("click", (event) => {
       const { target } = event;
       if (!target || !target.dataset.activateFrame) return;
