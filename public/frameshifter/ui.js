@@ -145,6 +145,11 @@ const attachFrameActivation = () => {
       const { target } = event;
       if (!target || !target.dataset.activateFrame) return;
       activateFrame(target);
+
+      const activeIcon = document.querySelector("#sidebar li.active");
+      activeIcon && activeIcon.classList.remove("active");
+
+      target.classList.add("active");
     });
   });
 };

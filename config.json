@@ -6,7 +6,7 @@
         {
             "name": "Coriolis Shipyard",
             "desc": "iFrame view for Coriolis Shipyard app",
-            "icon": "https://edassets.org/static/img/engineers/Engineer_icon.svg",
+            "icon": "/icons/coriolis.svg",
             "type": "iframe",
             "iframeUrl": "https://coriolis.io/"
         },
@@ -19,7 +19,7 @@
         {
             "name": "Dev Scanner",
             "desc": "Inspect E:D data as collected by FrameShifter",
-            "icon": "https://edassets.org/static/img/misc/tech_broker.svg",
+            "icon": "/dev-scanner/icon.svg",
             "type": "internal",
             "slug": "dev-scanner"
         }
