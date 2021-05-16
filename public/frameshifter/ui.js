@@ -154,12 +154,40 @@ const attachFrameActivation = () => {
   });
 };
 
-const buildUi = async () => {
-  const { frames } = window.frameShifterConfig;
+const applyHueRotation = (hueRotate, hueRotateIframes) => {
+  if (typeof hueRotate === undefined) return;
 
+  const hueRotateStyle = document.createElement("STYLE");
+  hueRotateStyle.innerHTML = `
+    body {
+      filter:hue-rotate(${hueRotate}deg);
+    }
+
+    body:not(.hue-rotate-iframes) iframe {
+      filter:hue-rotate(-${hueRotate}deg);
+    }
+    `;
+  document.head.appendChild(hueRotateStyle);
+
+  if (hueRotateIframes) document.body.classList.add("hue-rotate-iframes");
+};
+
+const applyBackgroundImage = (backgroundImage) => {
+  if (!backgroundImage) return;
+  document.body.style.backgroundImage = `url(${backgroundImage})`;
+};
+
+const buildUi = async () => {
+  const { frames, hueRotate, hueRotateIframes, backgroundImage } =
+    window.frameShifterConfig;
+
+  applyHueRotation(hueRotate, hueRotateIframes);
+  applyBackgroundImage(backgroundImage);
   createUiEls();
   await createFrames(frames);
   attachFrameActivation();
+
+  document.querySelector("#sidebar li").click();
 };
 
 window.addEventListener("CONFIG_READY", buildUi);

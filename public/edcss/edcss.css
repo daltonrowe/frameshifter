@@ -1,6 +1,6 @@
 :root {
   --primary: #f07b05;
-  --primary-dark: hsl(30, 81%, 34%);
+  --primary-dark: #6b3b0b;
   --primary-light: #ffb000;
   --bg: #111;
   --bg-light: #333;
@@ -10,12 +10,22 @@
   --svg-filter:  brightness(0.5) sepia(1) hue-rotate(10deg) saturate(8);
 }
 
+@font-face {
+  font-family: "display-font";
+  src: url("/edcss/eurocaps.ttf") format("truetype");
+}
+
 body {
+  width:100vw;
+  height:100vw;
   background-color: var(--bg);
   position: relative;
   color:var(--text);
-  font-family: sans-serif;
+  font-family: 'display-font', sans-serif;
   scrollbar-color: var(--primary) var(--bg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
 #sidebar {
@@ -84,5 +94,4 @@ body {
 
 iframe {
     border:none;
-    background-color:var(--bg-dark)
 }

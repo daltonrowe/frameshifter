@@ -4,8 +4,15 @@
     "journalDir": "C:\\Users\\drowe\\Saved Games\\Frontier Developments\\Elite Dangerous",
     "frames": [
         {
+            "name": "Welcome Screen",
+            "desc": "Initial about and splash screen",
+            "icon": "/welcome/icon.svg",
+            "type": "internal",
+            "slug": "welcome"
+        },
+        {
             "name": "Coriolis Shipyard",
-            "desc": "iFrame view for Coriolis Shipyard app",
+            "desc": "Example iframe view for Coriolis Shipyard app",
             "icon": "/icons/coriolis.svg",
             "type": "iframe",
             "iframeUrl": "https://coriolis.io/"
@@ -29,5 +36,8 @@
     "journalFileRefreshSecs": 3,
     "statusCheckSecs": 2,
     "serverPort": 3307,
-    "logging": "error"
+    "logging": "error",
+    "hueRotate": 0,
+    "hueRotateIframes": false,
+    "backgroundImage": "/edcss/default_bg.jpg"
 }
