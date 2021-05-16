@@ -7,15 +7,15 @@ const fslog = (...args) => {
 };
 
 const fswarn = (...args) => {
-  if (config.logging === "debug" || console.logging === "warning")
+  if (config.logging === "debug" || config.logging === "warning")
     console.warn(...args);
 };
 
 const fserror = (...args) => {
   if (
     config.logging === "debug" ||
-    console.logging === "warning" ||
-    console.logging === "error"
+    config.logging === "warning" ||
+    config.logging === "error"
   )
     console.error(...args);
 };
