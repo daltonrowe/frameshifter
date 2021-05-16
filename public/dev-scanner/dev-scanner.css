@@ -6,10 +6,11 @@
 
 .dev-scanner-collapse-next {
     cursor: pointer;
+    user-select: none;
 }
 
 .dev-scanner-collapse-next:hover + .dev-scanner-output {
-    background:rgba(255,255,255,0.1);
+    background:#222;
     border:1px solid #eee;
 }
 
@@ -21,10 +22,11 @@
     overflow-y:scroll;
     resize:vertical;
     color:#999;
+    background:#111;
 }
 
 .dev-scanner-output.collapsed {
-    max-height:35px;
+    max-height:65px;
     overflow: hidden;
     resize:none;
 }
