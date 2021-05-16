@@ -7,7 +7,7 @@ const socket = io(window.location.href);
 socket.connect();
 
 socket.onAny((event, data) => {
-  console.log(event, data);
+  console.log(event);
 
   // react to status updates and set global data
   if (event.includes("UPDATE_")) {
