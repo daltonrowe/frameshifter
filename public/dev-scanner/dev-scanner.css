@@ -10,19 +10,19 @@
 }
 
 .dev-scanner-collapse-next:hover + .dev-scanner-output {
-    background:#222;
-    border:1px solid #eee;
+    background:var(--bg-dark);
+    border:1px solid var(--text);
 }
 
 .dev-scanner-output {
     height:auto;
     max-height:none;
     margin:10px 0;
-    border:1px solid #999;
+    border:1px solid var(--text-light);
     overflow-y:scroll;
     resize:vertical;
     color:#999;
-    background:#111;
+    background:var(--bg);
 }
 
 .dev-scanner-output.collapsed {
