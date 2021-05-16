@@ -4,8 +4,10 @@
     "journalDir": "C:\\Users\\drowe\\Saved Games\\Frontier Developments\\Elite Dangerous",
     "journalMaxLines": 50,
     "journalCheckMins": 3,
+    "journalFileRefreshSecs": 3,
     "statusCheckSecs": 2,
     "serverPort": 3307,
+    "logging": "error",
     "frames": [
         {
             "name": "Coriolis Shipyard",

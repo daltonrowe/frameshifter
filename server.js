@@ -1,15 +1,22 @@
 const config = require("./config.json");
 
-// Standard Express + socket.io
+const fslog = (...args) => {
+  if (config.logging === "debug") fslog(...args);
+};
+
+// express webserver
 
 const express = require("express");
 const app = express();
+
+// co-host socket.io server on same port
 
 const http = require("http");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+// basic auth
 app.use((req, res, next) => {
   const auth = { login: config.username, password: config.password };
 
@@ -29,15 +36,18 @@ app.use((req, res, next) => {
   res.status(401).send("Authentication required.");
 });
 
+// serve files in public directory as static files
 app.use(express.static("public"));
 
+// when a new client connects, send them all the current info
 io.on("connection", (socket) => {
-  console.log("Client connected.");
+  fslog("Client connected.");
 
   socket.emit("CURRENT_STATE", playerData);
 
   socket.emit("CURRENT_JOURNAL", playerJournal);
 
+  // delete the username and password sending the config the client
   sanitizedConfig = { ...config };
   if (sanitizedConfig.journalDir) delete sanitizedConfig.journalDir;
   if (sanitizedConfig.username) delete sanitizedConfig.username;
@@ -45,7 +55,7 @@ io.on("connection", (socket) => {
   socket.emit("CURRENT_CONFIG", sanitizedConfig);
 });
 
-// Watch relevant status files
+// watch relevant status files
 
 const fs = require("fs");
 
@@ -66,7 +76,7 @@ const watchPlayerFile = (file, property) => {
       const newData = JSON.parse(fs.readFileSync(file, "utf8"));
       playerData[property] = { ...newData };
       io.emit(`UPDATE_${property.toUpperCase()}`, playerData[property]);
-      console.log(`Player ${property} updated.`);
+      fslog(`Player ${property} updated.`);
     }
   );
 };
@@ -92,11 +102,12 @@ watchPlayerFile(modulesInfoFile, "modulesinfo");
 const navRouteFile = `${config.journalDir}\\NavRoute.json`;
 watchPlayerFile(navRouteFile, "navroute");
 
-// Tail player journal log
+// tail player journal log
 
 Tail = require("tail").Tail;
 let currentLog = "";
 let journalWatcher = null;
+let filePingerHack = null;
 
 const checkJournalFiles = () => {
   const logFiles = [];
@@ -108,11 +119,12 @@ const checkJournalFiles = () => {
 
   const mostRecentLog = logFiles[logFiles.length - 1];
   if (currentLog !== mostRecentLog) {
-    console.log(`Using journal: ${mostRecentLog}`);
+    fslog(`Using journal: ${mostRecentLog}`);
     currentLog = mostRecentLog;
     if (journalWatcher) journalWatcher.unwatch();
 
-    journalWatcher = new Tail(`${config.journalDir}\\${currentLog}`, {
+    const journalFile = `${config.journalDir}\\${currentLog}`;
+    journalWatcher = new Tail(journalFile, {
       nLines: config.journalMaxLines,
     });
 
@@ -120,23 +132,32 @@ const checkJournalFiles = () => {
       const eventData = JSON.parse(line);
       playerJournal.push(eventData);
       io.emit(`JOURNAL_${eventData.event.toUpperCase()}`, eventData);
-      console.log("Player journal updated.");
+      fslog("Player journal updated.");
       if (playerJournal.length > config.journalMaxLines) playerJournal.shift();
     });
 
     journalWatcher.watch();
+
+    if (filePingerHack) clearInterval(filePingerHack);
+    filePingerHack = setInterval(() => {
+      if (fs.existsSync(journalFile)) {
+        // do nothing
+        // for some reason the file was only being written when read or something to that effect
+        // checking if the file exists triggers the update
+      }
+    }, config.journalFileRefreshSecs * 1000);
   }
 };
 
 setInterval(() => {
-  console.log("Checking for new journal files.");
+  fslog("Checking for new journal files.");
   checkJournalFiles();
 }, config.journalCheckMins * 60 * 1000);
 
 checkJournalFiles();
 
 server.listen(config.serverPort, () => {
-  console.log("Server started");
+  fslog("Server started");
 });
 
 require("dns").lookup(require("os").hostname(), (_err, networkHost, _fam) => {
