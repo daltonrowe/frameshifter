@@ -1,5 +1,20 @@
 #welcome {
     height:100%;
     padding:20px 20px 0 20px;
-    overflow-y: scroll;
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#welcome-inner {
+    max-width:500px;
+    text-align: center;
+}
+
+#welcome-logo {
+    width:100%;
+    height:200px;
+    filter: var(--svg-filter);
+    margin-left:-10px;
 }

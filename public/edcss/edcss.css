@@ -7,7 +7,7 @@
   --bg-dark: black;
   --text: #eee;
   --text-light: #999;
-  --svg-filter:  brightness(0.5) sepia(1) hue-rotate(10deg) saturate(8);
+  --svg-filter:  brightness(0.5) sepia(1) hue-rotate(6deg) saturate(100);
 }
 
 @font-face {
@@ -21,11 +21,29 @@ body {
   background-color: var(--bg);
   position: relative;
   color:var(--text);
-  font-family: 'display-font', sans-serif;
+  font-family: sans-serif;
   scrollbar-color: var(--primary) var(--bg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+}
+
+::selection {
+  color: var(--bg);
+  background: var(--primary);
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'display-font', sans-serif;
+}
+
+h2,h3,h4,h5,h6 {
+  font-weight: normal;
+  font-size: 18px;
+}
+
+p {
+  line-height: 1.6em;
 }
 
 #sidebar {
@@ -94,4 +112,10 @@ body {
 
 iframe {
     border:none;
+}
+
+h1 {
+  margin-bottom:30px;
+  font-size: 32px;
+  color:var(--primary);
 }
