@@ -56,7 +56,7 @@ Change this if you have conflicts with other ports.
 
 `debug | warn | error | none`
 
-Level of terminal logging you want to display.
+Level of terminal logging you want to display in the FrameShifter terminal window.
 
 ### hueRotate
 
