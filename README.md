@@ -24,7 +24,9 @@ FrameShifter works by hosting a Node.js webserver alongside Elite Dangerous. Thi
 
 1. Connect to the same network/wifi where FrameShifter is running.
 1. In a browser, visit the second URL printed after starting FrameShifter
-1. Done! **Any tablet, phone, monitor, OBS browser source can display FrameShifter!**
+1. Done! **Any tablet, phone, monitor, or OBS browser source can display FrameShifter!**
+
+- Use the first URL (127.0.0.1:XXXX) to access FrameShifter on the host computer.
 
 ## Starting FrameShifter
 
