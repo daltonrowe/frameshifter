@@ -44,7 +44,7 @@ User configuration is performed through the `config.json` in the root of the Fra
 
 1. Place the plugin folder and files in `public` directory
 1. Edit `config.json`
-    - In the `frames` property, add frame information as provided by the plugin creator.
+    - In the `frames` property array, add frame information as provided by the plugin creator.
 1. Restart FrameShifter!
 
 ## Creating Plugins
