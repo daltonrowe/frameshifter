@@ -3,14 +3,16 @@
 
 # FrameShifter — Elite Dangerous Dashboards and Overlays
 
-FrameShifter is an tool for displaying data from Elite Dangerous. Extendable with HTML/CSS/JS, FrameShifter makes consuming data from status files and player journals easy.
+FrameShifter is a tool for displaying Elite Dangerous dashboards and overlays. 
 
-FrameShifter works by hosting a Node.js webserver alongside Elite Dangerous. This server reads your Elite Dangerous status files and player journal, and sends it to connected browsers via websockets!
+Extendable with HTML/CSS/JS, FrameShifter makes consuming data from status files and player journals easy.
+
+FrameShifter works by hosting a local web server alongside the Elite Dangerous. This server reads your Elite Dangerous status files and player journal, and sends it to connected browser dashboards via websockets!
 
 ## Installing FrameShifter
 
 * On the device where you play Elite Dangerous:
-1. Download the lastest [FrameShifter .zip file.](https://github.com/daltonrowe/frameshifter/archive/refs/heads/master.zip)
+1. Download the lastest [FrameShifter zip file.](https://github.com/daltonrowe/frameshifter/archive/refs/heads/master.zip)
 1. Unzip and edit `config.json`.
     - Update `username`, `password`, and `journalDir` properties.
     - Be sure to include double slashes `\\` in the path name to escape the backslash character.
@@ -20,6 +22,10 @@ FrameShifter works by hosting a Node.js webserver alongside Elite Dangerous. Thi
 1. Run `npm start`.
 1. Done! Access FrameShifter via the URLs printed in the terminal.
 
+## Starting FrameShifter
+
+1. After installing, run `npm start` from the FrameShifter root directory.
+
 ## Connecting Devices
 
 1. Connect to the same network/wifi where FrameShifter is running.
@@ -28,13 +34,9 @@ FrameShifter works by hosting a Node.js webserver alongside Elite Dangerous. Thi
 
 - Use the first URL (127.0.0.1:XXXX) to access FrameShifter on the host computer.
 
-## Starting FrameShifter
-
-1. After installing, run `npm start` from the FrameShifter root directory.
-
 ## Adding / Using Plugins
 
-1. Place plugin files in `public/`
+1. Place the plugin folder and files in `public` directory
 1. Edit `config.json`
     - In the `frames` property, add frame information as provided by the plugin creator.
 1. Restart FrameShifter!
