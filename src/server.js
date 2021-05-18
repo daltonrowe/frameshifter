@@ -1,5 +1,5 @@
 // read user config file
-const config = require("./config.json");
+const config = require("../config.json");
 
 // custom logging function for config controls
 const fslog = (...args) => {
