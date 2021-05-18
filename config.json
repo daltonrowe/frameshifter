@@ -12,7 +12,7 @@
         },
         {
             "name": "Coriolis Shipyard",
-            "desc": "Example iframe view for Coriolis Shipyard app",
+            "desc": "Example iframe for Coriolis Shipyard app",
             "icon": "/icons/coriolis.svg",
             "type": "iframe",
             "iframeUrl": "https://coriolis.io/"

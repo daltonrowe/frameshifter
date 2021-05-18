@@ -60,7 +60,7 @@ Level of terminal logging you want to display in the FrameShifter terminal windo
 
 ### hueRotate
 
-Colorize your dashboard just like your ship HUD. Number of degrees to rotate the FrameShifter dashboard.
+Colorize your dashboard just like your ship HUD. Number of degrees on the color wheel to rotate the FrameShifter dashboard.
 
 - `0` - Elite Dangerous Orange
 - `60` - Green
@@ -97,9 +97,29 @@ Optional icon URL. If no URL is provided no icon will be generated in the dashbo
 ### type
 `internal | iframe`
 
-On dashboard load plugins with type `internal` are loaded via `public/PLUGINSLUG/index.html` snippet. Directory used is determined by the plugin `slug` property.
+When the FrameShifter dashboard loads, plugins with type `internal` are fetching and inserting using the `public/PLUGINSLUG/index.html` snippet. The directory used is determined by the plugin `slug` property.
+
+```json
+{
+    "name": "Welcome Screen",
+    "desc": "Initial about and splash screen",
+    "icon": "/welcome/icon.svg",
+    "type": "internal",
+    "slug": "welcome"
+}
+```
 
 Type `iframe` provides a simple and quick way to access embedded websites through FrameShifter. URLs are provided via the `iframeUrl` property.
+
+```json
+{
+    "name": "Coriolis Shipyard",
+    "desc": "Example iframe for Coriolis Shipyard app",
+    "icon": "/icons/coriolis.svg",
+    "type": "iframe",
+    "iframeUrl": "https://coriolis.io/"
+}
+```
 
 ### slug
 
@@ -111,5 +131,5 @@ URL to embed in dashboard iframe.
 
 ### standaloneUrl
 
-Plugins that use stand alone HTML files can tell FrameShifter about them and print them for users by providing a relative URL here.
+Plugins that use stand alone HTML files can tell FrameShifter about them and print URLS for users by providing a relative URL here.
 
