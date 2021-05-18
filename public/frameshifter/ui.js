@@ -1,4 +1,6 @@
 const insertFrame = async (frame, frameEl) => {
+  if (frame.slug) frameEl.dataset.slug = frame.slug;
+
   const main = document.querySelector("#frame-window");
   main.appendChild(frameEl);
 
@@ -39,7 +41,7 @@ const handleInternal = async (frame) => {
     return;
   }
 
-  const id = `frame-iframe-${Date.now()}`;
+  const id = `frame-${frame.slug}-${Date.now()}`;
 
   const frameEl = document.createElement("SECTION");
   frameEl.dataset.activateAction = "defaultAction";
