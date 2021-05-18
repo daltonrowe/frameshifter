@@ -199,8 +199,8 @@ require("dns").lookup(require("os").hostname(), (_err, networkHost, _fam) => {
   
   FrameShifter :: Online
   
-  >> http://127.0.0.1:${config.serverPort}
-  >> http://${networkHost}:${config.serverPort}
+  >> Local:   http://127.0.0.1:${config.serverPort}
+  >> Network: http://${networkHost}:${config.serverPort}
 
   `);
 });
