@@ -1,7 +1,7 @@
 <img src="https://github.com/daltonrowe/frameshifter/raw/master/public/welcome/frameshifter-readme.png">
 
 
-# FrameShifter
+# FrameShifter -- Elite Dangerous Dashboards and Overlays
 
 FrameShifter is an tool for displaying data from Elite Dangerous. Extendable with HTML/CSS/JS, FrameShifter makes consuming data from status files and player journals easy.
 
