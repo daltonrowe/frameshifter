@@ -187,20 +187,52 @@ server.listen(config.serverPort, () => {
   fslog("Server started");
 });
 
+const collectStandalonePlugins = () => {
+  let standalonePlugins = [];
+
+  for (let i = 0; i < config.plugins.length; i++) {
+    const plugin = config.plugins[i];
+    if (plugin.standaloneUrls) {
+      for (let j = 0; j < plugin.standaloneUrls.length; j++) {
+        const pluginUrl = plugin.standaloneUrls[j];
+        standalonePlugins.push({
+          name: plugin.name,
+          url: `/${plugin.slug}/${pluginUrl}`,
+        });
+      }
+    }
+  }
+
+  return standalonePlugins;
+};
+
 require("dns").lookup(require("os").hostname(), (_err, networkHost, _fam) => {
   console.log(`
 
-  ███████╗██████╗  █████╗ ███╗   ███╗███████╗    ███████╗██╗  ██╗██╗███████╗████████╗███████╗██████╗ 
-  ██╔════╝██╔══██╗██╔══██╗████╗ ████║██╔════╝    ██╔════╝██║  ██║██║██╔════╝╚══██╔══╝██╔════╝██╔══██╗
-  █████╗  ██████╔╝███████║██╔████╔██║█████╗      ███████╗███████║██║█████╗     ██║   █████╗  ██████╔╝
-  ██╔══╝  ██╔══██╗██╔══██║██║╚██╔╝██║██╔══╝      ╚════██║██╔══██║██║██╔══╝     ██║   ██╔══╝  ██╔══██╗
-  ██║     ██║  ██║██║  ██║██║ ╚═╝ ██║███████╗    ███████║██║  ██║██║██║        ██║   ███████╗██║  ██║
-  ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   ╚══════╝╚═╝  ╚═╝
-  
-  FrameShifter :: Online
-  
-  >> Local:   http://127.0.0.1:${config.serverPort}
-  >> Network: http://${networkHost}:${config.serverPort}
+███████╗██████╗  █████╗ ███╗   ███╗███████╗    ███████╗██╗  ██╗██╗███████╗████████╗███████╗██████╗ 
+██╔════╝██╔══██╗██╔══██╗████╗ ████║██╔════╝    ██╔════╝██║  ██║██║██╔════╝╚══██╔══╝██╔════╝██╔══██╗
+█████╗  ██████╔╝███████║██╔████╔██║█████╗      ███████╗███████║██║█████╗     ██║   █████╗  ██████╔╝
+██╔══╝  ██╔══██╗██╔══██║██║╚██╔╝██║██╔══╝      ╚════██║██╔══██║██║██╔══╝     ██║   ██╔══╝  ██╔══██╗
+██║     ██║  ██║██║  ██║██║ ╚═╝ ██║███████╗    ███████║██║  ██║██║██║        ██║   ███████╗██║  ██║
+╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   ╚══════╝╚═╝  ╚═╝
 
-  `);
+FrameShifter Dashboard:
+
+>> Local:   http://127.0.0.1:${config.serverPort}
+>> Network: http://${networkHost}:${config.serverPort}
+`);
+
+  const standalonePlugins = collectStandalonePlugins();
+
+  if (standalonePlugins) {
+    console.log("Standalone Plugins:");
+    standalonePlugins.forEach((standalone) => {
+      console.log(
+        `
+${standalone.name}
+>> Local:   http://127.0.0.1:${config.serverPort}${standalone.url}
+>> Network: http://${networkHost}:${config.serverPort}${standalone.url}`
+      );
+    });
+  }
 });

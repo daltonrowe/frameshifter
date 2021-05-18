@@ -28,7 +28,10 @@
             "desc": "Inspect E:D data as collected by FrameShifter",
             "icon": "/dev-scanner/icon.svg",
             "type": "internal",
-            "slug": "dev-scanner"
+            "slug": "dev-scanner",
+            "standaloneUrls": [
+                "standalone.html"
+            ]
         }
     ],
     "journalMaxLines": 50,

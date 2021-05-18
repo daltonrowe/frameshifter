@@ -29,10 +29,10 @@ FrameShifter works by hosting a local web server alongside the Elite Dangerous. 
 ## Connecting Devices
 
 1. Connect to the same network/wifi where FrameShifter is running.
-1. In a browser, visit the second URL printed after starting FrameShifter
+1. In a browser, visit the "Network" URL printed after starting FrameShifter
 1. Done! **Any tablet, phone, monitor, or OBS browser source can display FrameShifter!**
 
-- Use the first URL (127.0.0.1:XXXX) to access FrameShifter on the host computer.
+- Use the "Local" URL printed in the terminal to access FrameShifter on the host computer.
 
 ## Configuration
 

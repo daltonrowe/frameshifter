@@ -95,6 +95,10 @@ const createFrames = async (frames) => {
         await handleInternal(frame);
         break;
 
+      case "standalone":
+        // do nothing
+        break;
+
       default:
         console.warn(
           `Frame type "${frame.type}" is not recognized for frame "${frame.name}" in config.json`
@@ -192,6 +196,7 @@ const buildUi = async () => {
   await createFrames(plugins);
   attachFrameActivation();
 
+  // click first sidebar item
   document.querySelector("#sidebar li").click();
 };
 

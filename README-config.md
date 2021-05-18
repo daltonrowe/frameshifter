@@ -86,7 +86,7 @@ Optional background image URL to use behind the FrameShifter dashboard.
 ## Frame Configuration
 
 ### name
-Name of the plugin, currently unused
+Name of the plugin, used in standalone URL output.
 
 ### desc
 Description of the plugin, currently unused
@@ -95,7 +95,7 @@ Description of the plugin, currently unused
 Optional icon URL. If no URL is provided no icon will be generated in the dashboard.
 
 ### type
-`internal | iframe`
+`internal | iframe | standalone`
 
 When the FrameShifter dashboard loads, plugins with type `internal` are fetching and inserting using the `public/PLUGINSLUG/index.html` snippet. The directory used is determined by the plugin `slug` property.
 
@@ -129,7 +129,6 @@ Directory in `public` folder to use for a plugins `index.html` file.
 
 URL to embed in dashboard iframe.
 
-### standaloneUrl
+### standaloneUrls
 
-Plugins that use stand alone HTML files can tell FrameShifter about them and print URLS for users by providing a relative URL here.
-
+Array of relative URLs to print at start. Allow users to quickly access overlays and standalone files.

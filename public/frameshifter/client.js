@@ -3,7 +3,7 @@ window.frameShifterJournal = [];
 window.frameShifterConfig = {};
 window.frameShifterStarted = false;
 
-const socket = io(window.location.href);
+const socket = io(`http://${window.location.host}/`);
 socket.connect();
 
 socket.onAny((event, data) => {
