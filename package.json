@@ -4,7 +4,7 @@
   "description": "Elite Dangerous JS tools",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node src/server.js"
   },
   "author": "Dalton Rowe",
   "license": "MIT",
