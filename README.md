@@ -36,6 +36,8 @@ FrameShifter works by hosting a local web server alongside the Elite Dangerous. 
 
 ## Configuration
 
+User configuration is performed through the `config.json` in the root of the FrameShifter directory.
+
 [Learn more about configuring FrameShifter here.](./README-config.md)
 
 ## Adding Plugins

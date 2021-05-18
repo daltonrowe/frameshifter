@@ -43,6 +43,12 @@ Learn more about information provided by Elite Dangerous status files and player
 
 ### Journal Events
 
+TODO
+
+### Status Events
+
+TODO
+
 ---
 
 ## Examples
