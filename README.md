@@ -24,7 +24,7 @@ FrameShifter works by hosting a local web server alongside the Elite Dangerous. 
 
 ## Starting FrameShifter
 
-1. After installing, run `npm start` from the FrameShifter root directory.
+1. After installing, run `npm start` from the FrameShifter root directory in a PowerShell or terminal.
 
 ## Connecting Devices
 
@@ -34,14 +34,18 @@ FrameShifter works by hosting a local web server alongside the Elite Dangerous. 
 
 - Use the first URL (127.0.0.1:XXXX) to access FrameShifter on the host computer.
 
-## Adding / Using Plugins
+## Configuration
+
+[Learn more about configuring FrameShifter here.](./README-config.md)
+
+## Adding Plugins
 
 1. Place the plugin folder and files in `public` directory
 1. Edit `config.json`
     - In the `frames` property, add frame information as provided by the plugin creator.
 1. Restart FrameShifter!
 
-## Making Plugins
+## Creating Plugins
 
 Built with Node and vanilla JS, FrameShifter aims to enable anyone familiar with web technologies (or not!) to easily and quickly make rad dashboards and overlays.
 
