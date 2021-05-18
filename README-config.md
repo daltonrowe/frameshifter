@@ -21,9 +21,9 @@ For Windows users this should be:
 
 Note the double backslashes! In JSON / Javascript `\` is a special character and must be escaped... to accomplish this we add another `\`.
 
-### frames
+### plugins
 
-Array of plugins to use in the FrameShifter dashboard. For more information about entries here, see Frame Configuration below.
+Array of plugins to use in the FrameShifter dashboard. For more information about entries here, see Plugin Configuration below.
 
 ### journalMaxLines
 

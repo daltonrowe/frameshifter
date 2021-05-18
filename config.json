@@ -2,7 +2,7 @@
     "username": "drowe",
     "password": "o7",
     "journalDir": "C:\\Users\\drowe\\Saved Games\\Frontier Developments\\Elite Dangerous",
-    "frames": [
+    "plugins": [
         {
             "name": "Welcome Screen",
             "desc": "Initial about and splash screen",

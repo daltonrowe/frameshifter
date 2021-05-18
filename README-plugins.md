@@ -6,7 +6,7 @@ FrameShifter is made to be easy, as such it has no build step. If you don't know
 
 **FrameShifter plugins are folders containing an `index.html` snippet.** 
 
-When information is added to a user's `config.json` under the `frames` array, with type `internal`, the plugin is loaded into the FrameShifter Dashboard.
+When information is added to a user's `config.json` under the `plugins` array, with type `internal`, the plugin is loaded into the FrameShifter Dashboard.
 
 The `index.html` can load any arbitrary HTML markup, `<link>`s to CSS styles, or Javscript `<script>` tags needed to create your plugin.
 Script tags are fetched and `eval`'d after insertion.
@@ -57,7 +57,7 @@ Below are the files and config updates require to make player Nav Route data app
 
 `config.json`
 ```json
-"frames": [
+"plugins": [
     {
         "name": "My New Plugin",
         "desc": "Displays nav route JSON when plotted in the galaxy map.",

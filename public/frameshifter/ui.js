@@ -183,13 +183,13 @@ const applyBackgroundImage = (backgroundImage) => {
 };
 
 const buildUi = async () => {
-  const { frames, hueRotate, hueRotateIframes, backgroundImage } =
+  const { plugins, hueRotate, hueRotateIframes, backgroundImage } =
     window.frameShifterConfig;
 
   applyHueRotation(hueRotate, hueRotateIframes);
   applyBackgroundImage(backgroundImage);
   createUiEls();
-  await createFrames(frames);
+  await createFrames(plugins);
   attachFrameActivation();
 
   document.querySelector("#sidebar li").click();
