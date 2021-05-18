@@ -174,7 +174,10 @@ const applyHueRotation = (hueRotate, hueRotateIframes) => {
 
 const applyBackgroundImage = (backgroundImage) => {
   if (!backgroundImage) return;
-  document.body.style.backgroundImage = `url(${backgroundImage})`;
+  const bgImage = document.createElement("IMG");
+  bgImage.id = "background-image";
+  bgImage.src = backgroundImage;
+  document.body.appendChild(bgImage);
 };
 
 const buildUi = async () => {
