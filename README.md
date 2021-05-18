@@ -1,6 +1,5 @@
-<div style="text-align:center;margin-bottom:20px;">
 <img src="https://github.com/daltonrowe/frameshifter/raw/master/public/welcome/frameshifter-readme.png">
-</div>
+
 
 # FrameShifter
 
