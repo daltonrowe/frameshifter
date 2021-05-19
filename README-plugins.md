@@ -33,8 +33,6 @@ In Javascript the following data is available on the global `window` object.
 ### `window.frameShifterConfig`
 - Contains all the information in the user config file, expect `username`, `password` and `journalDir`.
 
----
-
 ## Events
 
 FrameShifter checks and consumes data from the a several Elite Dangerous files. Below are the files tracked and Javscript custom events fired on the `window`, when data is updated.

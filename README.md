@@ -42,6 +42,8 @@ User configuration is performed through the `config.json` in the root of the Fra
 
 ## Adding Plugins
 
+[View a curated list of available plugins here.](./README-plugins-available.md)
+
 1. Place the plugin folder and files in `public` directory
 1. Edit `config.json`
     - In the `plugins` property array, add frame information as provided by the plugin creator.

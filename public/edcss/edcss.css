@@ -131,3 +131,9 @@ h1 {
   font-size: 32px;
   color:var(--primary);
 }
+
+.frame-default {
+  height:100%;
+  padding:20px 20px 0 20px;
+  overflow-y: scroll;
+}

@@ -29,7 +29,7 @@ Array of plugins to use in the FrameShifter dashboard. For more information abou
 
 Maximum number of lines (events) to store from the player journal. 
 
-### `journalCheckMins`
+### journalCheckMins
 
 Number of minutes to wait between checking for new journal log files. 
 
@@ -77,7 +77,7 @@ For more advanced themeing, you edit the variables at the top of `public/edcss/e
 
 Whether to colorize embedded iFrames or leave as is. Kind of neat for Elite themed sites like Coriolis, but generally probably annoying.
 
-## backgroundImage
+### backgroundImage
 
 Optional background image URL to use behind the FrameShifter dashboard.
 

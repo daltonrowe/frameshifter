@@ -11,6 +11,13 @@
             "slug": "welcome"
         },
         {
+            "name": "Status Panel",
+            "desc": "Overview and general status panel",
+            "icon": "/status-panel/icon.svg",
+            "type": "internal",
+            "slug": "status-panel"
+        },
+        {
             "name": "Coriolis Shipyard",
             "desc": "Example iframe for Coriolis Shipyard app",
             "icon": "/icons/coriolis.svg",
@@ -19,13 +26,13 @@
         },
         {
             "name": "edcss",
-            "desc": "Provides basic app theme and styles",
+            "desc": "Default FrameShifter theme and styles",
             "type": "internal",
             "slug": "edcss"
         },
         {
             "name": "Dev Scanner",
-            "desc": "Inspect E:D data as collected by FrameShifter",
+            "desc": "Inspect FrameShifter data as collected it updates",
             "icon": "/dev-scanner/icon.svg",
             "type": "internal",
             "slug": "dev-scanner",
