@@ -28,7 +28,7 @@ const insertFrame = async (frame, frameEl) => {
         eval(scriptText);
       } catch (err) {
         console.warn(`Error executing ${script.src}`);
-        console.error(error);
+        console.error(err);
       }
     });
 };
@@ -135,7 +135,7 @@ const activateFrame = (iconEl) => {
   }
 
   const frameActivationEvent = new CustomEvent("ACTIVATE_FRAME", {
-    detail: nextFrame.id,
+    detail: nextFrame.dataset.slug || false,
   });
 
   window.dispatchEvent(frameActivationEvent);

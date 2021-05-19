@@ -1,0 +1,23 @@
+#status-panel {
+    display:flex;
+    align-content: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+#status-panel h1 {
+    flex: 0 0 100%;
+}
+
+#status-panel > div { 
+    flex:0 0 18%;
+    margin-right:2%;
+}
+
+#status-panel > div:nth-of-type(5n) {
+    margin-right:0;
+}
+
+.status-data span {
+    display: inline-block;
+}

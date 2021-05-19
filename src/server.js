@@ -100,7 +100,15 @@ const watchPlayerFile = (file, property) => {
       interval: config.statusCheckSecs * 1000,
     },
     (_current, _prev) => {
-      const newData = JSON.parse(fs.readFileSync(file, "utf8"));
+      let newData = null;
+
+      try {
+        newData = JSON.parse(fs.readFileSync(file, "utf8"));
+      } catch {
+        console.warn(`Error reading ${file}`);
+        return;
+      }
+
       playerData[property] = { ...newData };
       io.emit(`UPDATE_${property.toUpperCase()}`, playerData[property]);
       fslog(`Player ${property} updated.`);
