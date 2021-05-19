@@ -21,13 +21,10 @@ window.frameShifterHelpers.getBinaryFlags = () => {
   return flagBinary;
 };
 
-window.frameShifterHelpers.playerIs = (flagName) => {
-  const flags = window.frameShifterHelpers.getBinaryFlags();
-
-  if (!flags) {
-    console.error("Player flags status not available.");
-    return null;
-  }
+window.frameShifterHelpers.playerInfo = (infoType) => {
+  const checkFlag = (num, max) => {
+    return flags[max - num] === "1";
+  };
 
   const flagNames = [
     "landed",
@@ -64,14 +61,17 @@ window.frameShifterHelpers.playerIs = (flagName) => {
     "srv-highbeam",
   ];
 
-  const checkFlag = (num) => {
-    return flags[31 - num] === "1";
-  };
+  if (flagNames.includes(infoType)) {
+    const flags = window.frameShifterHelpers.getBinaryFlags();
 
-  if (flagNames.includes(flagName) > 0) {
-    return checkFlag(flagNames.indexOf(flagName));
+    if (!flags) {
+      console.warn("Player Flags not available.");
+      return null;
+    } else {
+      return checkFlag(flagNames.indexOf(infoType), 31);
+    }
   }
 
-  console.warn(`Status flag "${flagName}" not found.`);
+  console.warn(`Player info "${infoType}" not found or available.`);
   return null;
 };

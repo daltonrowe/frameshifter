@@ -104,8 +104,8 @@ const watchPlayerFile = (file, property) => {
 
       try {
         newData = JSON.parse(fs.readFileSync(file, "utf8"));
-      } catch {
-        console.warn(`Error reading ${file}`);
+      } catch (err) {
+        fserror(`Error reading ${file}`, err);
         return;
       }
 
