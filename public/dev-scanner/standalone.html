@@ -1,47 +1,67 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FrameShifter: Dev Scanner</title>
 
-    <link rel="stylesheet" href="/edcss/edcss.css">
+    <link rel="stylesheet" href="/edcss/edcss.css" />
 
     <script src="/frameshifter/socket.io.min.js"></script>
     <script src="/frameshifter/client.js"></script>
-</head>
-<body>
-    <div id="dev-scanner">
 
-        <h1>Dev Scanner Tool</h1>
-    
-        <h2 class="dev-scanner-collapse-next">Journal</h2>
-        <pre id="dev-scanner-journal" class="dev-scanner-output collapsed"></pre>
-    
-        <h2 class="dev-scanner-collapse-next">Status</h2>
-        <pre id="dev-scanner-status" class="dev-scanner-output collapsed"></pre>
-    
-        <h2 class="dev-scanner-collapse-next">Cargo</h2>
-        <pre id="dev-scanner-cargo" class="dev-scanner-output collapsed"></pre>
-    
-        <h2 class="dev-scanner-collapse-next">Market</h2>
-        <pre id="dev-scanner-market" class="dev-scanner-output collapsed"></pre>
-    
-        <h2 class="dev-scanner-collapse-next">Modules</h2>
-        <pre id="dev-scanner-modulesinfo" class="dev-scanner-output collapsed"></pre>
-    
-        <h2 class="dev-scanner-collapse-next">Nav Route</h2>
-        <pre id="dev-scanner-navroute" class="dev-scanner-output collapsed"></pre>
-    
-        <h2 class="dev-scanner-collapse-next">Outfitting</h2>
-        <pre id="dev-scanner-outfitting" class="dev-scanner-output collapsed"></pre>
-    
-        <h2 class="dev-scanner-collapse-next">Shipyard</h2>
-        <pre id="dev-scanner-shipyard" class="dev-scanner-output collapsed"></pre>
-    
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="dev-scanner" class="standalone">
+      <h1>Dev Scanner Tool</h1>
+
+      <h2 class="dev-scanner-collapse-next">Journal</h2>
+      <pre id="dev-scanner-journal" class="dev-scanner-output collapsed"></pre>
+
+      <h2 class="dev-scanner-collapse-next">Status</h2>
+      <pre id="dev-scanner-status" class="dev-scanner-output collapsed"></pre>
+
+      <h2 class="dev-scanner-collapse-next">Cargo</h2>
+      <pre id="dev-scanner-cargo" class="dev-scanner-output collapsed"></pre>
+
+      <h2 class="dev-scanner-collapse-next">Market</h2>
+      <pre id="dev-scanner-market" class="dev-scanner-output collapsed"></pre>
+
+      <h2 class="dev-scanner-collapse-next">Modules</h2>
+      <pre
+        id="dev-scanner-modulesinfo"
+        class="dev-scanner-output collapsed"
+      ></pre>
+
+      <h2 class="dev-scanner-collapse-next">Nav Route</h2>
+      <pre id="dev-scanner-navroute" class="dev-scanner-output collapsed"></pre>
+
+      <h2 class="dev-scanner-collapse-next">Outfitting</h2>
+      <pre
+        id="dev-scanner-outfitting"
+        class="dev-scanner-output collapsed"
+      ></pre>
+
+      <h2 class="dev-scanner-collapse-next">Shipyard</h2>
+      <pre id="dev-scanner-shipyard" class="dev-scanner-output collapsed"></pre>
     </div>
-    
+
     <script type="text/javascript" src="/dev-scanner/dev-scanner.js"></script>
-    <link rel="stylesheet" href="/dev-scanner/dev-scanner.css">
-</body>
+    <link rel="stylesheet" href="/dev-scanner/dev-scanner.css" />
+  </body>
 </html>

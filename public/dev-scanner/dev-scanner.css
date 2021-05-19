@@ -4,6 +4,11 @@
     overflow-y: scroll;
 }
 
+#dev-scanner.standalone {
+    width:100vw;
+    height:100vh;
+}
+
 .dev-scanner-collapse-next {
     cursor: pointer;
     user-select: none;
