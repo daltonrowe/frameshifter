@@ -2,7 +2,7 @@
 <div id="status-panel" class="frame-default">
     <h1>Status Overview</h1>
 
-    <div id="status-panel-cargo" class="status-data">
+    <div id="status-panel-cargo-weight" class="status-data">
         <span class="status-label">Cargo: <span class="status-value"></span></span>
     </div>
 
@@ -10,16 +10,156 @@
         <span class="status-label">Firegroup: <span class="status-value"></span></span>
     </div>
 
-    <div id="status-panel-legal" class="status-data">
+    <div id="status-panel-legal-state" class="status-data">
         <span class="status-label">Legal State: <span class="status-value"></span></span>
     </div>
 
-    <div id="status-panel-fuel" class="status-data">
-        <span class="status-label">Fuel: <span class="status-value"></span></span>
+    <div id="status-panel-fuel-main" class="status-data">
+        <span class="status-label">Fuel Main: <span class="status-value"></span></span>
     </div>
 
-    <div id="status-panel-pips" class="status-data">
-        <span class="status-label">Pips: <span class="status-value"></span></span>
+    <div id="status-panel-fuel-res" class="status-data">
+        <span class="status-label">Fuel Res: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-pips-sys" class="status-data">
+        <span class="status-label">SYS: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-pips-eng" class="status-data">
+        <span class="status-label">ENG: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-pips-wep" class="status-data">
+        <span class="status-label">WEP: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-docked" class="status-data">
+        <span class="status-label">Docked: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-landed" class="status-data">
+        <span class="status-label">Landed: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-landing-gear" class="status-data">
+        <span class="status-label">Landing Gear: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-shields-up" class="status-data">
+        <span class="status-label">Shields: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-supercruise" class="status-data">
+        <span class="status-label">Supercruise: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-fa-off" class="status-data">
+        <span class="status-label">FA Off: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-hardpoints" class="status-data">
+        <span class="status-label">Hardpoints: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-in-wing" class="status-data">
+        <span class="status-label">In Wing: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-external-lights" class="status-data">
+        <span class="status-label">Ext Lights: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-cargo-scoop" class="status-data">
+        <span class="status-label">Cargo Scoop: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-silent-running" class="status-data">
+        <span class="status-label">Silent Running: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-scooping-fuel" class="status-data">
+        <span class="status-label">Fuel Scoop: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-srv-handbrake" class="status-data">
+        <span class="status-label">SRV Handbrake: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-srv-turret" class="status-data">
+        <span class="status-label">SRV Turret: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-srv-turret-retracted" class="status-data">
+        <span class="status-label">SRV Turret Retracted: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-srv-drive-assist" class="status-data">
+        <span class="status-label">SRV Drive Assist: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-mass-locked" class="status-data">
+        <span class="status-label">Mass Locked: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-fsd-charging" class="status-data">
+        <span class="status-label">FSD Chargin: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-fsd-cooldown" class="status-data">
+        <span class="status-label">FSD Cooldown: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-low-fuel" class="status-data">
+        <span class="status-label">Low Fuel: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-overheat" class="status-data">
+        <span class="status-label">Overheat: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-has-lat-lng" class="status-data">
+        <span class="status-label">Has LatLng: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-danger" class="status-data">
+        <span class="status-label">Danger: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-interdicted" class="status-data">
+        <span class="status-label">Interdicted: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-in-ship" class="status-data">
+        <span class="status-label">Ship: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-in-fighter" class="status-data">
+        <span class="status-label">Fighter: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-in-srv" class="status-data">
+        <span class="status-label">SRV: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-analysis-mode" class="status-data">
+        <span class="status-label">Analysis: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-night-vision" class="status-data">
+        <span class="status-label">Night Vision: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-has-altitude" class="status-data">
+        <span class="status-label">Has Alt: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-fsd-jump" class="status-data">
+        <span class="status-label">FSD Jump: <span class="status-value"></span></span>
+    </div>
+
+    <div id="status-panel-srv-highbeam" class="status-data">
+        <span class="status-label">SRV Highbeams: <span class="status-value"></span></span>
     </div>
 </div>
 

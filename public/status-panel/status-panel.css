@@ -9,15 +9,25 @@
     flex: 0 0 100%;
 }
 
-#status-panel > div { 
+#status-panel > .status-data { 
     flex:0 0 18%;
     margin-right:2%;
+    margin-bottom:10px;
 }
 
 #status-panel > div:nth-of-type(5n) {
     margin-right:0;
 }
 
-.status-data span {
-    display: inline-block;
+.status-data {
+    background-color:var(--bg-dark);
+    padding:10px 20px 10px 10px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.status-data .status-label {
+    width:100%;
+    display:flex;
+    justify-content: space-between;
 }

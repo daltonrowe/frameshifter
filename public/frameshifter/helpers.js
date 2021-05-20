@@ -1,5 +1,28 @@
 window.frameShifterHelpers = {};
 
+// return data if present and as expected
+window.frameShifterHelpers.getPlayerData = (value, type) => {
+  if (typeof value === "undefined") return null;
+
+  switch (type) {
+    case "object":
+    case "string":
+    case "number":
+      if (typeof value === type) return value;
+      break;
+
+    case "array":
+      if (Array.isArray(value)) return value;
+      break;
+
+    default:
+      break;
+  }
+
+  return null;
+};
+
+// turn encoded status integer into a 32 length series of binary flags
 window.frameShifterHelpers.getBinaryFlags = () => {
   if (!window.frameShifterState.status.Flags) return false;
 
@@ -21,11 +44,13 @@ window.frameShifterHelpers.getBinaryFlags = () => {
   return flagBinary;
 };
 
+// One giant data grabber to help people make dashboards quickly
 window.frameShifterHelpers.playerInfo = (infoType) => {
   const checkFlag = (num, max) => {
     return flags[max - num] === "1";
   };
 
+  // boolean information available in binary Status flags
   const flagNames = [
     "landed",
     "docked",
@@ -41,22 +66,22 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
     "scooping-fuel",
     "srv-handbrake",
     "srv-turret",
-    "srv-turrent-retracted",
+    "srv-turret-retracted",
     "srv-drive-assist",
     "mass-locked",
     "fsd-charging",
     "fsd-cooldown",
     "low-fuel",
     "overheat",
-    "lat-lng",
+    "has-lat-lng",
     "danger",
-    "inderdicted",
+    "interdicted",
     "in-ship",
     "in-fighter",
     "in-srv",
     "analysis-mode",
     "night-vision",
-    "altitude",
+    "has-altitude",
     "fsd-jump",
     "srv-highbeam",
   ];
@@ -71,6 +96,80 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
       return checkFlag(flagNames.indexOf(infoType), 31);
     }
   }
+
+  // Data available from various places in Status.json
+  const statusNames = [
+    "cargo-weight",
+    "firegroup",
+    "legal-state",
+    "fuel-main",
+    "fuel-res",
+    "pips-sys",
+    "pips-eng",
+    "pips-wep",
+  ];
+
+  if (statusNames.includes(infoType)) {
+    switch (infoType) {
+      case "cargo-weight":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.status.Cargo,
+          "number"
+        );
+
+      case "firegroup":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.status.FireGroup,
+          "number"
+        );
+
+      case "legal-state":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.status.LegalState,
+          "string"
+        );
+
+      case "fuel-main":
+        const tFuelMain = window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.status.Fuel,
+          "object"
+        );
+        return tFuelMain ? tFuelMain.FuelMain : null;
+
+      case "fuel-res":
+        const tFuelRes = window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.status.Fuel,
+          "object"
+        );
+        return tFuelRes ? tFuelRes.FuelReservoir : null;
+
+      case "pips-sys":
+        const tPipSys = window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.status.Pips,
+          "array"
+        );
+        return tPipSys ? tPipSys[0] / 2 : null;
+
+      case "pips-eng":
+        const tPipEng = window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.status.Pips,
+          "array"
+        );
+        return tPipEng ? tPipEng[1] / 2 : null;
+
+      case "pips-wep":
+        const tPipWep = window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.status.Pips,
+          "array"
+        );
+        return tPipWep ? tPipWep[2] / 2 : null;
+
+      default:
+        return null;
+    }
+  }
+
+  // unknown info type, avoid this
 
   console.warn(`Player info "${infoType}" not found or available.`);
   return null;
