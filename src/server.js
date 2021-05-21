@@ -171,14 +171,14 @@ const handleLine = (line) => {
 
 const swapToNewLog = (nextLog) => {
   currentLog = nextLog;
+  journalFile = `${config.journalDir}\\${currentLog}`;
+
   if (journalWatcher) journalWatcher.unwatch();
 
-  journalFile = `${config.journalDir}\\${currentLog}`;
   journalWatcher = new Tail(journalFile, {
     nLines: config.journalMaxLines,
   });
 
-  console.log(journalWatcher);
   journalWatcher.on("line", handleLine);
   journalWatcher.watch();
 
