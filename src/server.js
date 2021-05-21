@@ -146,8 +146,51 @@ watchPlayerFile(backpackFile, "backpack");
 
 Tail = require("tail").Tail;
 let currentLog = "";
+let journalFile = "";
 let journalWatcher = null;
 let filePingerHack = null;
+
+const handleLine = (line) => {
+  const eventData = JSON.parse(line);
+  const eventName = eventData.event.toUpperCase();
+  playerJournal.unshift(eventData);
+  io.emit(`JOURNAL_${eventName}`, eventData);
+  fslog("Player journal updated.");
+  if (playerJournal.length > config.journalMaxLines) playerJournal.pop();
+
+  // player state data that is collected from journal logs
+  const specialStates = ["LOADOUT", "LOADGAME", "COMMANDER"];
+
+  if (specialStates.includes(eventName)) {
+    playerData.special[eventName] = eventData;
+
+    io.emit(`UPDATE_${eventName}`, playerData.special[eventName]);
+    fslog(`Player special data ${eventName} updated.`);
+  }
+};
+
+const swapToNewLog = (nextLog) => {
+  currentLog = nextLog;
+  if (journalWatcher) journalWatcher.unwatch();
+
+  journalFile = `${config.journalDir}\\${currentLog}`;
+  journalWatcher = new Tail(journalFile, {
+    nLines: config.journalMaxLines,
+  });
+
+  console.log(journalWatcher);
+  journalWatcher.on("line", handleLine);
+  journalWatcher.watch();
+
+  if (filePingerHack) clearInterval(filePingerHack);
+  filePingerHack = setInterval(() => {
+    if (journalFile && fs.existsSync(journalFile)) {
+      // do nothing
+      // for some reason the file was only being written when read or something to that effect
+      // checking if the file exists triggers the update
+    }
+  }, config.journalFileRefreshSecs * 1000);
+};
 
 const checkJournalFiles = () => {
   const logFiles = [];
@@ -158,46 +201,8 @@ const checkJournalFiles = () => {
   });
 
   const mostRecentLog = logFiles[logFiles.length - 1];
-  if (currentLog !== mostRecentLog) {
-    fslog(`Using journal: ${mostRecentLog}`);
-    currentLog = mostRecentLog;
-    if (journalWatcher) journalWatcher.unwatch();
 
-    const journalFile = `${config.journalDir}\\${currentLog}`;
-    journalWatcher = new Tail(journalFile, {
-      nLines: config.journalMaxLines,
-    });
-
-    journalWatcher.on("line", (line) => {
-      const eventData = JSON.parse(line);
-      const eventName = eventData.event.toUpperCase();
-      playerJournal.unshift(eventData);
-      io.emit(`JOURNAL_${eventName}`, eventData);
-      fslog("Player journal updated.");
-      if (playerJournal.length > config.journalMaxLines) playerJournal.pop();
-
-      // player state data that is collected from journal logs
-      const specialStates = ["LOADOUT", "LOADGAME", "COMMANDER"];
-
-      if (specialStates.includes(eventName)) {
-        playerData.special[eventName] = eventData;
-
-        io.emit(`UPDATE_${eventName}`, playerData.special[eventName]);
-        fslog(`Player special data ${eventName} updated.`);
-      }
-    });
-
-    journalWatcher.watch();
-
-    if (filePingerHack) clearInterval(filePingerHack);
-    filePingerHack = setInterval(() => {
-      if (fs.existsSync(journalFile)) {
-        // do nothing
-        // for some reason the file was only being written when read or something to that effect
-        // checking if the file exists triggers the update
-      }
-    }, config.journalFileRefreshSecs * 1000);
-  }
+  if (currentLog !== mostRecentLog) swapToNewLog(mostRecentLog);
 };
 
 setInterval(() => {
@@ -214,6 +219,8 @@ server.listen(config.serverPort, () => {
 const collectStandalonePlugins = () => {
   let standalonePlugins = [];
 
+  // collect all plugin standalone URLs from config
+  // do this better with a spread
   for (let i = 0; i < config.plugins.length; i++) {
     const plugin = config.plugins[i];
     if (plugin.standaloneUrls) {

@@ -18,13 +18,13 @@ const modulesinfoOut = document.querySelector("#dev-scanner-modulesinfo");
 const navrouteOut = document.querySelector("#dev-scanner-navroute");
 const outfittingOut = document.querySelector("#dev-scanner-outfitting");
 const shipyardOut = document.querySelector("#dev-scanner-shipyard");
+const loadOutOut = document.querySelector("#dev-scanner-loadout");
+const loadGameOut = document.querySelector("#dev-scanner-load-game");
+const commanderOut = document.querySelector("#dev-scanner-commander");
 
 window.addEventListener("UPDATE_JOURNAL", () => {
   journalOut.textContent = JSON.stringify(window.frameShifterJournal, null, 2);
 });
-
-journalOut.textContent = JSON.stringify(window.frameShifterJournal, null, 2);
-journalOut.dataset.lastUpdate = `${Date.now()}`;
 
 window.addEventListener("UPDATE_STATUS", () => {
   statusOut.textContent = JSON.stringify(
@@ -82,7 +82,33 @@ window.addEventListener("UPDATE_SHIPYARD", () => {
   );
 });
 
+window.addEventListener("UPDATE_LOADGAME", () => {
+  loadGameOut.textContent = JSON.stringify(
+    window.frameShifterState.special.LOADGAME,
+    null,
+    2
+  );
+});
+
+window.addEventListener("UPDATE_LOADOUT", () => {
+  loadOutOut.textContent = JSON.stringify(
+    window.frameShifterState.special.LOADOUT,
+    null,
+    2
+  );
+});
+
+window.addEventListener("UPDATE_COMMANDER", () => {
+  commanderOut.textContent = JSON.stringify(
+    window.frameShifterState.special.COMMANDER,
+    null,
+    2
+  );
+});
+
 const updateAll = () => {
+  journalOut.textContent = JSON.stringify(window.frameShifterJournal, null, 2);
+
   statusOut.textContent = JSON.stringify(
     window.frameShifterState.status,
     null,
@@ -121,6 +147,24 @@ const updateAll = () => {
 
   shipyardOut.textContent = JSON.stringify(
     window.frameShifterState.shipyard,
+    null,
+    2
+  );
+
+  loadOutOut.textContent = JSON.stringify(
+    window.frameShifterState.special.LOADOUT,
+    null,
+    2
+  );
+
+  loadGameOut.textContent = JSON.stringify(
+    window.frameShifterState.special.LOADGAME,
+    null,
+    2
+  );
+
+  commanderOut.textContent = JSON.stringify(
+    window.frameShifterState.special.COMMANDER,
     null,
     2
   );
