@@ -76,6 +76,8 @@ io.on("connection", (socket) => {
 const fs = require("fs");
 
 const playerData = {};
+playerData.special = {};
+
 const playerJournal = [];
 
 const watchPlayerFile = (file, property) => {
@@ -137,6 +139,9 @@ watchPlayerFile(modulesInfoFile, "modulesinfo");
 const navRouteFile = `${config.journalDir}\\NavRoute.json`;
 watchPlayerFile(navRouteFile, "navroute");
 
+const backpackFile = `${config.journalDir}\\Backpack.json`;
+watchPlayerFile(backpackFile, "backpack");
+
 // tail player journal log
 
 Tail = require("tail").Tail;
@@ -165,10 +170,21 @@ const checkJournalFiles = () => {
 
     journalWatcher.on("line", (line) => {
       const eventData = JSON.parse(line);
+      const eventName = eventData.event.toUpperCase();
       playerJournal.unshift(eventData);
-      io.emit(`JOURNAL_${eventData.event.toUpperCase()}`, eventData);
+      io.emit(`JOURNAL_${eventName}`, eventData);
       fslog("Player journal updated.");
       if (playerJournal.length > config.journalMaxLines) playerJournal.pop();
+
+      // player state data that is collected from journal logs
+      const specialStates = ["LOADOUT", "LOADGAME", "COMMANDER"];
+
+      if (specialStates.includes(eventName)) {
+        playerData.special[eventName] = eventData;
+
+        io.emit(`UPDATE_${eventName}`, playerData.special[eventName]);
+        fslog(`Player special data ${eventName} updated.`);
+      }
     });
 
     journalWatcher.watch();
@@ -187,7 +203,7 @@ const checkJournalFiles = () => {
 setInterval(() => {
   fslog("Checking for new journal files.");
   checkJournalFiles();
-}, config.journalCheckMins * 60 * 1000);
+}, config.journalCheckSecs * 1000);
 
 checkJournalFiles();
 

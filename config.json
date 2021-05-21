@@ -42,7 +42,7 @@
         }
     ],
     "journalMaxLines": 50,
-    "journalCheckMins": 3,
+    "journalCheckSecs": 60,
     "journalFileRefreshSecs": 3,
     "statusCheckSecs": 2,
     "serverPort": 3307,

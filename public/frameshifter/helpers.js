@@ -1,5 +1,23 @@
 window.frameShifterHelpers = {};
 
+window.frameShifterHelpers.getPluginConfigBySlug = (slug) => {
+  if (!window.frameShifterConfig) {
+    console.warn(`Plugin config for slug "${slug}" is not available.`);
+    return false;
+  }
+
+  for (let i = 0; i < window.frameShifterConfig.plugins.length; i++) {
+    const plugin = window.frameShifterConfig.plugins[i];
+
+    if (plugin.slug && plugin.slug === slug) {
+      return plugin;
+    }
+  }
+
+  console.error(`Plugin config for slug "${slug}" is not found.`);
+  return false;
+};
+
 // return data if present and as expected
 window.frameShifterHelpers.getPlayerData = (value, type) => {
   if (typeof value === "undefined") return null;
@@ -168,6 +186,25 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
         return null;
     }
   }
+
+  // TODO
+
+  // ship-type
+  // ship-ident
+  // ship-name
+  // hull-health
+  // hull-value
+  // unladen-mass
+  // fuel-main-cap
+  // fuel-res-cap
+  // cargo-cap
+  // max-jump
+  // rebuy
+  // cmdr-name
+  // horizons
+  // odyssey
+  // game-mode
+  // credits
 
   // unknown info type, avoid this
 

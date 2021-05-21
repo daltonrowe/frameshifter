@@ -29,9 +29,9 @@ Array of plugins to use in the FrameShifter dashboard. For more information abou
 
 Maximum number of lines (events) to store from the player journal. 
 
-### journalCheckMins
+### journalCheckSecs
 
-Number of minutes to wait between checking for new journal log files. 
+Number of seconds to wait between checking for new journal log files. 
 
 Elite Dangerous outputs different journal log files for each play session. FrameShifter detects these and automatically uses the newest journal log.
 
