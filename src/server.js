@@ -166,28 +166,28 @@ const watchPlayerFile = (file, property) => {
   );
 };
 
-const statusFile = `${config.journalDir}\\Status.json`;
+const statusFile = path.join(config.journalDir, "Status.json");
 watchPlayerFile(statusFile, "status");
 
-const marketFile = `${config.journalDir}\\Market.json`;
+const marketFile = path.join(config.journalDir, "Market.json");
 watchPlayerFile(marketFile, "market");
 
-const shipyardFile = `${config.journalDir}\\Shipyard.json`;
+const shipyardFile = path.join(config.journalDir, "Shipyard.json");
 watchPlayerFile(shipyardFile, "shipyard");
 
-const outfittingFile = `${config.journalDir}\\Outfitting.json`;
+const outfittingFile = path.join(config.journalDir, "Outfitting.json");
 watchPlayerFile(outfittingFile, "outfitting");
 
-const cargoFile = `${config.journalDir}\\Cargo.json`;
+const cargoFile = path.join(config.journalDir, "Cargo.json");
 watchPlayerFile(cargoFile, "cargo");
 
-const modulesInfoFile = `${config.journalDir}\\ModulesInfo.json`;
+const modulesInfoFile = path.join(config.journalDir, "ModulesInfo.json");
 watchPlayerFile(modulesInfoFile, "modulesinfo");
 
-const navRouteFile = `${config.journalDir}\\NavRoute.json`;
+const navRouteFile = path.join(config.journalDir, "NavRoute.json");
 watchPlayerFile(navRouteFile, "navroute");
 
-const backpackFile = `${config.journalDir}\\Backpack.json`;
+const backpackFile = path.join(config.journalDir, "Backpack.json");
 watchPlayerFile(backpackFile, "backpack");
 
 // tail player journal log
@@ -230,7 +230,7 @@ const handleLine = (line) => {
  */
 const swapToNewLog = (nextLog) => {
   currentLog = nextLog;
-  journalFile = `${config.journalDir}\\${currentLog}`;
+  journalFile = path.join(config.journalDir, currentLog);
 
   if (journalWatcher) journalWatcher.unwatch();
 
