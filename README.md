@@ -60,4 +60,4 @@ Built with simple HTML + CSS + JS, FrameShifter aims to enable anyone familiar w
 
 ## Credits & Acknowledgements
 
-[View JSDocs on Github Pages](./README-acknowledgements.md)
+[View the the awesome projects that made this possible](./README-acknowledgements.md)
