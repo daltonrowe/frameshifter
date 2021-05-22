@@ -1,6 +1,6 @@
 # Available plugins
 
-TODO
+COMING SOON
 
 ---
 
@@ -8,11 +8,11 @@ TODO
 
 ### Welcome
 
-Welcome screen with animated SVGator logo.
+Welcome screen with animated logo.
 
 ### Status Panel
 
-General status panel for expanded information.
+Status panel with examples of all the general data FrameShifter has available.
 
 ### edcss
 

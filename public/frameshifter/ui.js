@@ -7,6 +7,7 @@ const insertFrame = async (frame, frameEl) => {
   if (frame.icon) {
     const iconEl = document.createElement("LI");
     iconEl.dataset.activateFrame = frameEl.id;
+    if (frame.name) iconEl.dataset.name = frame.name;
 
     const iconImageEl = document.createElement("IMG");
     iconImageEl.src = frame.icon;
