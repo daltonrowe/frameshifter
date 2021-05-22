@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node src/server.js",
-    "jsdoc": "./node_modules/.bin/jsdoc src/server.js -d public/jsdoc"
+    "jsdoc": "./node_modules/.bin/jsdoc src/server.js public/frameshifter/client.js public/frameshifter/ui.js public/frameshifter/helpers.js -d public/jsdoc"
   },
   "author": "Dalton Rowe",
   "license": "MIT",
