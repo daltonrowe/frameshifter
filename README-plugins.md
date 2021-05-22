@@ -4,7 +4,7 @@ FrameShifter is made to be easy, as such it has no build step. If you don't know
 
 ## Creating a dashboard plugin
 
-**FrameShifter plugins are folders containing an `index.html` snippet.** 
+**FrameShifter plugins are folders containing an `index.html` snippet.**
 
 When information is added to a user's `config.json` under the `plugins` array, with type `internal`, the plugin is loaded into the FrameShifter Dashboard.
 
@@ -15,45 +15,12 @@ See the examples section below, or explore the packaged plugins to learn more.
 
 ---
 
-## Available Data
-
-Try using the built in dashboard plugin `Dev Scanner` to explore available data and behavior.
-
-Learn more about information provided by Elite Dangerous status files and player journal [here.](https://elite-journal.readthedocs.io/en/latest/Status%20File/)
-
-In Javascript the following data is available on the global `window` object.
-
-### `window.frameShifterState`
-- Contains all data currently(!) in the player's status files.
-
-### `window.frameShifterJournal`
-- Contains an array of the last 50 (by default) lines in the player's Journal .log file
-- Default lines can be adjusted using the `journalMaxLines` property in `config.json`.
-
-### `window.frameShifterConfig`
-- Contains all the information in the user config file, expect `username`, `password` and `journalDir`.
-
-## Events
-
-FrameShifter checks and consumes data from the a several Elite Dangerous files. Below are the files tracked and Javscript custom events fired on the `window`, when data is updated.
-
-Learn more about information provided by Elite Dangerous status files and player journal [here.](https://elite-journal.readthedocs.io/en/latest/Status%20File/)
-
-### Journal Events
-
-TODO
-
-### Status Events
-
-TODO
-
----
-
 ## Examples
 
 Below are the files and config updates require to make player Nav Route data appear on screen.
 
 `config.json`
+
 ```json
 "plugins": [
     {
@@ -67,6 +34,7 @@ Below are the files and config updates require to make player Nav Route data app
 ```
 
 `public/my-plugin/index.html`
+
 ```html
 <h1>My New Plugin</h1>
 <div id="my-plugin-output"></div>
@@ -77,13 +45,13 @@ Below are the files and config updates require to make player Nav Route data app
 ```
 
 `public/my-plugin/my-plugin-script.js`
+
 ```js
 // find our plugin's element
 const myPluginOut = document.querySelector("#my-plugin-output");
 
 // when nav route data updates
 window.addEventListener("UPDATE_NAVROUTE", () => {
-  
   // set the output elements text content the current FrameShifter data.
   myPluginOut.textContent = JSON.stringify(
     window.frameShifterState.navroute,
@@ -94,11 +62,93 @@ window.addEventListener("UPDATE_NAVROUTE", () => {
 ```
 
 `public/my-plugin/my-plugin-styles.css`
+
 ```css
 /* basic dashboard padding */
 #my-plugin-output {
-    height:100%;
-    padding:20px 20px 0 20px;
-    overflow-y: scroll;
+  height: 100%;
+  padding: 20px 20px 0 20px;
+  overflow-y: scroll;
 }
 ```
+
+---
+
+## Available Data
+
+Try using the built in dashboard plugin `Dev Scanner` to explore available data and behavior.
+
+Learn more about information provided by Elite Dangerous status files and player journal [here.](https://elite-journal.readthedocs.io/en/latest/Status%20File/)
+
+In Javascript the following data is available on the global `window` object.
+
+### `window.frameShifterState`
+
+- Contains all data currently(!) in the player's status files.
+
+### `window.frameShifterJournal`
+
+- Contains an array of the last 50 (by default) lines in the player's Journal .log file
+- Default lines can be adjusted using the `journalMaxLines` property in `config.json`.
+
+### `window.frameShifterConfig`
+
+- Contains all the information in the user config file, expect `username`, `password` and `journalDir`.
+
+---
+
+## Events
+
+FrameShifter checks and consumes data from the a several Elite Dangerous files. Below are the files tracked and Javscript custom events fired on the `window`, when data is updated.
+
+Learn more about information provided by Elite Dangerous status files and player journal [here.](https://elite-journal.readthedocs.io/en/latest/Status%20File/)
+
+### Journal Events
+
+Journal events from client.js can be consumed with `eventListeners` on the `window`
+
+```js
+window.addEventListener("JOURNAL_SOMEVENTNAME", (event) => {
+  const { detail } = event;
+  // do something with journal entry data in `detail`
+});
+```
+
+These events are are all UPPERCASE, and contain a wide variety of data available from Elite.
+
+For a full list of journal events, see [EDCodex Docs](http://edcodex.info/?m=doc).
+
+Some common example events might be:
+
+- `JOURNAL_FSDJUMP`
+- `JOURNAL_DIED`
+- `JOURNAL_PVPKILL`
+- `JOURNAL_LIFTOFF`
+- `JOURNAL_SELLEXPLORATIONDATA`
+
+Journal events for `LOADGAME` and `LOADOUT` are special in that the most recent version is stored in `window.frameShifterState.loadgame` and `window.frameShifterState.loadout` respectively.
+
+### Update Events
+
+Update events from client.js can be consumed with `eventListeners` on the `window`
+
+```js
+window.addEventListener("UPDATE_SOMENAME", (event) => {
+  const { detail } = event;
+  // do something with update info data in `detail`
+});
+```
+
+These events are are all UPPERCASE, and contain a wide variety of data available from Elite.
+
+Full list of update events:
+
+- `UPDATE_STATUS`
+- `UPDATE_MARKET`
+- `UPDATE_SHIPYARD`
+- `UPDATE_OUTFITTING`
+- `UPDATE_CARGO`
+- `UPDATE_MODULESINFO`
+- `UPDATE_NAVROUTE`
+- `UPDATE_BACKPACK`
+- `UPDATE_JOURNAL`
