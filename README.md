@@ -23,7 +23,9 @@ FrameShifter works by hosting a local web server alongside the Elite Dangerous. 
 
 ## Starting FrameShifter
 
-1. After installing, run `npm start` from the FrameShifter root directory in a PowerShell or terminal.
+1. Double click `FrameShifter.exe`
+   - Select "More Info"
+   - Select "Run Anyway"
 
 ## Connecting Devices
 
