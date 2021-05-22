@@ -32,7 +32,7 @@ archive.on("error", function (err) {
 
 archive.pipe(output);
 
-archive.file(path.join(__dirname, "FrameShifter.exe"), {
+archive.file(path.join(__dirname, "build", "FrameShifter.exe"), {
   name: "FrameShifter.exe",
 });
 
