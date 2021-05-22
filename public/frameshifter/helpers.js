@@ -1,5 +1,24 @@
 window.frameShifterHelpers = {};
 
+window.frameShifterHelpers.hasData = (obj) => {
+  if (obj && Object.keys(obj).length > 0) {
+    return true;
+  }
+
+  return false;
+};
+
+window.frameShifterHelpers.waitForDataInterval = null;
+
+window.frameShifterHelpers.waitForData = (callback) => {
+  window.frameShifterHelpers.waitForDataInterval = setInterval(() => {
+    if (window.frameShifterHelpers.hasData(window.frameShifterState)) {
+      callback();
+      clearInterval(window.frameShifterHelpers.waitForDataInterval);
+    }
+  }, 200);
+};
+
 window.frameShifterHelpers.getPluginConfigBySlug = (slug) => {
   if (!window.frameShifterConfig) {
     console.warn(`Plugin config for slug "${slug}" is not available.`);

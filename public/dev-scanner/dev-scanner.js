@@ -170,21 +170,8 @@ const updateAll = () => {
   );
 };
 
-const hasData = (obj) => {
-  if (obj && Object.keys(obj).length > 0) {
-    return true;
-  }
-
-  return false;
-};
-
 if (window.location.href.indexOf("standalone") > 0) {
-  const waitForData = setInterval(() => {
-    if (hasData(window.frameShifterState)) {
-      updateAll();
-      clearInterval(waitForData);
-    }
-  }, 200);
+  window.frameShifterHelpers.waitForData(updateAll);
 } else {
   updateAll();
 }
