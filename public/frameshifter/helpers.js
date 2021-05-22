@@ -1,5 +1,27 @@
 window.frameShifterHelpers = {};
 
+window.frameShifterHelpers.pipsToNumber = (pip) => {
+  // giving up and doing this bad
+  // there is math number bases that i dont quite get
+
+  switch (pip) {
+    case 2:
+      return 1;
+
+    case 4:
+      return 2;
+
+    case 6:
+      return 3;
+
+    case 8:
+      return 4;
+
+    default:
+      return 0;
+  }
+};
+
 window.frameShifterHelpers.hasData = (obj) => {
   if (obj && Object.keys(obj).length > 0) {
     return true;
@@ -42,6 +64,7 @@ window.frameShifterHelpers.getPlayerData = (value, type) => {
   if (typeof value === "undefined") return null;
 
   switch (type) {
+    case "boolean":
     case "object":
     case "string":
     case "number":
@@ -184,21 +207,27 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
           window.frameShifterState.status.Pips,
           "array"
         );
-        return tPipSys ? tPipSys[0] / 2 : null;
+        return tPipSys
+          ? window.frameShifterHelpers.pipsToNumber(tPipSys[0])
+          : null;
 
       case "pips-eng":
         const tPipEng = window.frameShifterHelpers.getPlayerData(
           window.frameShifterState.status.Pips,
           "array"
         );
-        return tPipEng ? tPipEng[1] / 2 : null;
+        return tPipEng
+          ? window.frameShifterHelpers.pipsToNumber(tPipEng[1])
+          : null;
 
       case "pips-wep":
         const tPipWep = window.frameShifterHelpers.getPlayerData(
           window.frameShifterState.status.Pips,
           "array"
         );
-        return tPipWep ? tPipWep[2] / 2 : null;
+        return tPipWep
+          ? window.frameShifterHelpers.pipsToNumber(tPipWep[2])
+          : null;
 
       default:
         return null;
@@ -330,34 +359,28 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
           "number"
         );
 
-      case "rebuy":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.Rebuy,
-          "number"
-        );
-
       case "cmdr-name":
         return window.frameShifterHelpers.getPlayerData(
           window.frameShifterState.loadgame.Commander,
-          "number"
+          "string"
         );
 
       case "horizons":
         return window.frameShifterHelpers.getPlayerData(
           window.frameShifterState.loadgame.Horizons,
-          "number"
+          "boolean"
         );
 
       case "odyssey":
         return window.frameShifterHelpers.getPlayerData(
           window.frameShifterState.loadgame.Odyssey,
-          "number"
+          "booelan"
         );
 
       case "game-mode":
         return window.frameShifterHelpers.getPlayerData(
           window.frameShifterState.loadgame.GameMode,
-          "number"
+          "string"
         );
 
       case "credits-at-load":
