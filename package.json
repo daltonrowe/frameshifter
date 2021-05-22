@@ -2,9 +2,10 @@
   "name": "frameshifterjs",
   "version": "1.0.0",
   "description": "Elite Dangerous JS tools",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
+    "pkg": "pkg src/server.js --output build --targets win",
     "jsdoc": "./node_modules/.bin/jsdoc src/server.js public/frameshifter/client.js public/frameshifter/ui.js public/frameshifter/helpers.js -d docs"
   },
   "author": "Dalton Rowe",

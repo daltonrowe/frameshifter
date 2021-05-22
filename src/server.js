@@ -99,7 +99,7 @@ app.use((req, res, next) => {
 });
 
 // serve files in public directory as static files
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "../public")));
 
 // when a new client connects, send them all the current info
 io.on("connection", (socket) => {
