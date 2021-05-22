@@ -117,6 +117,10 @@ io.on("connection", (socket) => {
   socket.emit("CURRENT_CONFIG", sanitizedConfig);
 });
 
+socket.on("RELAY", (eventName, data) => {
+  socket.broadcast.emit(`RELAY_${eventName.toUpperCase()}`, data);
+});
+
 // watch relevant status files
 
 const playerData = {};

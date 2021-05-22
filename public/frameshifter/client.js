@@ -73,4 +73,15 @@ window.addEventListener("CURRENT_CONFIG", (_event) => {
   const browserEvent = new CustomEvent("CONFIG_READY");
   window.dispatchEvent(browserEvent);
   window.frameShifterStarted = true;
+  document.body.dataset.started = true;
+});
+
+/**
+ * @function relayPluginData
+ * @description relay plugin data via the server
+ * @memberof Client
+ */
+window.addEventListener("RELAY", (event) => {
+  const { detail } = event;
+  socket.emit(detail.eventName, detail.data);
 });

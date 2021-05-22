@@ -500,3 +500,10 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
   console.warn(`"${infoType}" is not a valid player info type.`);
   return null;
 };
+
+window.frameShifterHelpers.relayEvent = (eventName, data) => {
+  const browserEvent = new CustomEvent(eventName.toUpperCase(), {
+    detail: data,
+  });
+  window.dispatchEvent(browserEvent);
+};
