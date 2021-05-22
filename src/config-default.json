@@ -1,5 +1,5 @@
 {
-    "journalMaxLines": 50,
+    "journalMaxLines": 200,
     "journalCheckSecs": 60,
     "journalFileRefreshSecs": 3,
     "statusCheckSecs": 2,

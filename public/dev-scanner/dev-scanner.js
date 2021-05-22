@@ -21,7 +21,6 @@ const shipyardOut = document.querySelector("#dev-scanner-shipyard");
 const backpackOut = document.querySelector("#dev-scanner-backpack");
 const loadOutOut = document.querySelector("#dev-scanner-loadout");
 const loadGameOut = document.querySelector("#dev-scanner-load-game");
-const commanderOut = document.querySelector("#dev-scanner-commander");
 
 window.addEventListener("UPDATE_JOURNAL", () => {
   journalOut.textContent = JSON.stringify(window.frameShifterJournal, null, 2);
@@ -107,14 +106,6 @@ window.addEventListener("UPDATE_LOADOUT", () => {
   );
 });
 
-window.addEventListener("UPDATE_COMMANDER", () => {
-  commanderOut.textContent = JSON.stringify(
-    window.frameShifterState.commander,
-    null,
-    2
-  );
-});
-
 const updateAll = () => {
   journalOut.textContent = JSON.stringify(window.frameShifterJournal, null, 2);
 
@@ -174,12 +165,6 @@ const updateAll = () => {
 
   loadGameOut.textContent = JSON.stringify(
     window.frameShifterState.loadgame,
-    null,
-    2
-  );
-
-  commanderOut.textContent = JSON.stringify(
-    window.frameShifterState.commander,
     null,
     2
   );
