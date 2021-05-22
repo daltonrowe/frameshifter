@@ -3,7 +3,9 @@ const path = require("path");
 const archiver = require("archiver");
 
 // create a file to stream archive data to.
-const output = fs.createWriteStream(__dirname + "/example.zip");
+const output = fs.createWriteStream(
+  path.join(__dirname, "build", "FrameShifter.zip")
+);
 const archive = archiver("zip", {
   zlib: { level: 9 }, // Sets the compression level.
 });
@@ -30,8 +32,14 @@ archive.on("error", function (err) {
 
 archive.pipe(output);
 
-// append a file
-archive.file(path.join(__dirname, "FrameShifter.exe"), { name: "file4.txt" });
+archive.file(path.join(__dirname, "FrameShifter.exe"), {
+  name: "FrameShifter.exe",
+});
 
-// append files from a sub-directory and naming it `new-subdir` within the archive
+archive.file(path.join(__dirname, "config.json"), {
+  name: "config.json",
+});
+
 archive.directory(path.join(__dirname, "public"), "public");
+
+archive.finalize();
