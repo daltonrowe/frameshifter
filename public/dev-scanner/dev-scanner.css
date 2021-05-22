@@ -2,11 +2,11 @@
     box-sizing:border-box;
 }
 
-body {
+body.standalone {
     overflow-y: auto;
 }
 
-#dev-scanner.standalone {
+.standalone #dev-scanner {
     width:100vw;
     padding:0 40px 0 20px;
 }
