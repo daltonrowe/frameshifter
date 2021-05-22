@@ -12,15 +12,14 @@ FrameShifter works by hosting a local web server alongside the Elite Dangerous. 
 ## Installing FrameShifter
 
 * On the device where you play Elite Dangerous:
-1. Download the lastest [FrameShifter zip file.](https://github.com/daltonrowe/frameshifter/archive/refs/heads/master.zip)
+1. Download the lastest [FrameShifter zip file.](https://github.com/daltonrowe/frameshifter/raw/master/build/FrameShifter.zip)
 1. Unzip and edit `config.json`.
     - Update `username`, `password`, and `journalDir` properties.
     - Be sure to include double slashes `\\` in the path name to escape the backslash character.
-1. Download and install [Node.js v14 or higher.](https://nodejs.org/en/download/current/)
-1. Open PowerShell / terminal in FrameShifter directory.
-1. Run `npm install --production` to install dependencies.
-1. Run `npm start`.
-1. Done! Access FrameShifter via the URLs printed in the terminal.
+1. Double click `FrameShifter.exe`
+    - Select "More Info"
+    - Select "Run Anyway"
+1. Done! Access FrameShifter in any browser window via the URLs printed in the terminal.
 
 ## Starting FrameShifter
 

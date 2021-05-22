@@ -307,26 +307,17 @@ const collectStandalonePlugins = () => {
 require("dns").lookup(require("os").hostname(), (_err, networkHost, _fam) => {
   console.log(`
 
+    ███████╗██████╗  █████╗ ███╗   ███╗███████╗    ███████╗██╗  ██╗██╗███████╗████████╗███████╗██████╗ 
+    ██╔════╝██╔══██╗██╔══██╗████╗ ████║██╔════╝    ██╔════╝██║  ██║██║██╔════╝╚══██╔══╝██╔════╝██╔══██╗
+    █████╗  ██████╔╝███████║██╔████╔██║█████╗      ███████╗███████║██║█████╗     ██║   █████╗  ██████╔╝
+    ██╔══╝  ██╔══██╗██╔══██║██║╚██╔╝██║██╔══╝      ╚════██║██╔══██║██║██╔══╝     ██║   ██╔══╝  ██╔══██╗
+    ██║     ██║  ██║██║  ██║██║ ╚═╝ ██║███████╗    ███████║██║  ██║██║██║        ██║   ███████╗██║  ██║
+    ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   ╚══════╝╚═╝  ╚═╝
 
+    FrameShifter Dashboard:
 
-
-
-
-
-
-
-
-███████╗██████╗  █████╗ ███╗   ███╗███████╗    ███████╗██╗  ██╗██╗███████╗████████╗███████╗██████╗ 
-██╔════╝██╔══██╗██╔══██╗████╗ ████║██╔════╝    ██╔════╝██║  ██║██║██╔════╝╚══██╔══╝██╔════╝██╔══██╗
-█████╗  ██████╔╝███████║██╔████╔██║█████╗      ███████╗███████║██║█████╗     ██║   █████╗  ██████╔╝
-██╔══╝  ██╔══██╗██╔══██║██║╚██╔╝██║██╔══╝      ╚════██║██╔══██║██║██╔══╝     ██║   ██╔══╝  ██╔══██╗
-██║     ██║  ██║██║  ██║██║ ╚═╝ ██║███████╗    ███████║██║  ██║██║██║        ██║   ███████╗██║  ██║
-╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   ╚══════╝╚═╝  ╚═╝
-
-FrameShifter Dashboard:
-
->> Local:   http://127.0.0.1:${config.serverPort}
->> Network: http://${networkHost}:${config.serverPort}
+    >> Local:   http://127.0.0.1:${config.serverPort}
+    >> Network: http://${networkHost}:${config.serverPort}
 `);
 
   const standalonePlugins = collectStandalonePlugins();
@@ -336,9 +327,9 @@ FrameShifter Dashboard:
     standalonePlugins.forEach((standalone) => {
       console.log(
         `
-${standalone.name}
->> Local:   http://127.0.0.1:${config.serverPort}${standalone.url}
->> Network: http://${networkHost}:${config.serverPort}${standalone.url}`
+    ${standalone.name}
+    >> Local:   http://127.0.0.1:${config.serverPort}${standalone.url}
+    >> Network: http://${networkHost}:${config.serverPort}${standalone.url}`
       );
     });
   }
