@@ -1,5 +1,5 @@
 /**
- * @namespace Ui
+ * @namespace ClientUi
  */
 
 /**
@@ -7,7 +7,7 @@
  * @param  {object} frame Plugin configuration object
  * @param  {HTMLElement} frameEl HTML markup to insert and eval
  * @description insert a frame (plugin) into the dashboard
- * @memberof Ui
+ * @memberof ClientUi
  */
 const insertFrame = async (frame, frameEl) => {
   if (frame.slug) frameEl.dataset.slug = frame.slug;
@@ -49,7 +49,7 @@ const insertFrame = async (frame, frameEl) => {
  * @function handleInternal
  * @param  {object} frame Plugin configuration object
  * @description fetch, insert, and eval plugin index.html from directory
- * @memberof Ui
+ * @memberof ClientUi
  */
 const handleInternal = async (frame) => {
   if (!frame.slug) {
@@ -77,7 +77,7 @@ const handleInternal = async (frame) => {
  * @function handleIframe
  * @param  {object} frame Plugin configuration object
  * @description insert iframe plugin into dashboard, to be loaded on first click
- * @memberof Ui
+ * @memberof ClientUi
  */
 const handleIframe = async (frame) => {
   if (!frame.iframeUrl) {
@@ -100,7 +100,7 @@ const handleIframe = async (frame) => {
 /**
  * @function createUiEls
  * @description create basic ui elements for frameshifter dashboard
- * @memberof Ui
+ * @memberof ClientUi
  */
 const createUiEls = () => {
   const sidebar = document.createElement("UL");
@@ -115,7 +115,7 @@ const createUiEls = () => {
 /**
  * @function createFrames
  * @description loop over and insert frames for all relevant plugins
- * @memberof Ui
+ * @memberof ClientUi
  */
 const createFrames = async (frames) => {
   for (let i = 0; i < frames.length; i++) {
@@ -145,7 +145,7 @@ const createFrames = async (frames) => {
 /**
  * @function frameActivations
  * @description available actions when the plugin icon is selected
- * @memberof Ui
+ * @memberof ClientUi
  */
 const frameActivations = {
   loadIframe: (frameEl) => {
@@ -164,7 +164,7 @@ const frameActivations = {
  * @function activateFrame
  * @param {HTMLElement} iconEl icon element to pull activation data from
  * @description swap frames in the dashboard ui
- * @memberof Ui
+ * @memberof ClientUi
  */
 const activateFrame = (iconEl) => {
   const currentFrame = document.querySelector("section.active");
@@ -191,7 +191,7 @@ const activateFrame = (iconEl) => {
 /**
  * @function attachFrameActivation
  * @description attach event listeners to all icons after creation
- * @memberof Ui
+ * @memberof ClientUi
  */
 const attachFrameActivation = () => {
   const icons = document.querySelectorAll("#sidebar li");
@@ -215,7 +215,7 @@ const attachFrameActivation = () => {
  * @param {number} hueRotate number of degrees to color rotate ui
  * @param {boolean} hueRotateIframes whether to reverse shift iframe elements to be colored normally
  * @description apply css property to support hue rotation
- * @memberof Ui
+ * @memberof ClientUi
  */
 const applyHueRotation = (hueRotate, hueRotateIframes) => {
   if (typeof hueRotate === undefined) return;
@@ -239,7 +239,7 @@ const applyHueRotation = (hueRotate, hueRotateIframes) => {
  * @function applyBackgroundImage
  * @param {string} backgroundImage absolute or relative url to dashboard background
  * @description set up the background img element
- * @memberof Ui
+ * @memberof ClientUi
  */
 const applyBackgroundImage = (backgroundImage) => {
   if (!backgroundImage) return;
@@ -252,7 +252,7 @@ const applyBackgroundImage = (backgroundImage) => {
 /**
  * @function buildUi
  * @description bootstrap the dashboard ui from available config
- * @memberof Ui
+ * @memberof ClientUi
  */
 const buildUi = async () => {
   const { plugins, hueRotate, hueRotateIframes, backgroundImage } =

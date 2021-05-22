@@ -30,6 +30,10 @@
  * @namespace Server
  */
 
+const fs = require("fs");
+const path = require("path");
+const process = require("process");
+
 // read user config file
 
 let configDefault;
@@ -37,8 +41,11 @@ let configUser;
 
 try {
   configDefault = require("./config-default.json");
-  configUser = require("../config.json");
+  configUser = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "../config.json"), "utf8")
+  );
 } catch (_err) {
+  console.error(_err);
   console.warn(`
 ==============================
 Hold up! Got a little problem.
@@ -120,7 +127,7 @@ app.use((req, res, next) => {
 });
 
 // serve files in public directory as static files
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "../public")));
 
 // when a new client connects, send them all the current info
 io.on("connection", (socket) => {
@@ -138,10 +145,11 @@ io.on("connection", (socket) => {
   socket.emit("CURRENT_CONFIG", sanitizedConfig);
 });
 
-// watch relevant status files
+socket.on("RELAY", (eventName, data) => {
+  socket.broadcast.emit(`RELAY_${eventName.toUpperCase()}`, data);
+});
 
-const fs = require("fs");
-const { exit } = require("process");
+// watch relevant status files
 
 const playerData = {};
 
@@ -190,28 +198,28 @@ const watchPlayerFile = (file, property) => {
   );
 };
 
-const statusFile = `${config.journalDir}\\Status.json`;
+const statusFile = path.join(config.journalDir, "Status.json");
 watchPlayerFile(statusFile, "status");
 
-const marketFile = `${config.journalDir}\\Market.json`;
+const marketFile = path.join(config.journalDir, "Market.json");
 watchPlayerFile(marketFile, "market");
 
-const shipyardFile = `${config.journalDir}\\Shipyard.json`;
+const shipyardFile = path.join(config.journalDir, "Shipyard.json");
 watchPlayerFile(shipyardFile, "shipyard");
 
-const outfittingFile = `${config.journalDir}\\Outfitting.json`;
+const outfittingFile = path.join(config.journalDir, "Outfitting.json");
 watchPlayerFile(outfittingFile, "outfitting");
 
-const cargoFile = `${config.journalDir}\\Cargo.json`;
+const cargoFile = path.join(config.journalDir, "Cargo.json");
 watchPlayerFile(cargoFile, "cargo");
 
-const modulesInfoFile = `${config.journalDir}\\ModulesInfo.json`;
+const modulesInfoFile = path.join(config.journalDir, "ModulesInfo.json");
 watchPlayerFile(modulesInfoFile, "modulesinfo");
 
-const navRouteFile = `${config.journalDir}\\NavRoute.json`;
+const navRouteFile = path.join(config.journalDir, "NavRoute.json");
 watchPlayerFile(navRouteFile, "navroute");
 
-const backpackFile = `${config.journalDir}\\Backpack.json`;
+const backpackFile = path.join(config.journalDir, "Backpack.json");
 watchPlayerFile(backpackFile, "backpack");
 
 // tail player journal log
@@ -254,7 +262,7 @@ const handleLine = (line) => {
  */
 const swapToNewLog = (nextLog) => {
   currentLog = nextLog;
-  journalFile = `${config.journalDir}\\${currentLog}`;
+  journalFile = path.join(config.journalDir, currentLog);
 
   if (journalWatcher) journalWatcher.unwatch();
 
@@ -331,26 +339,17 @@ const collectStandalonePlugins = () => {
 require("dns").lookup(require("os").hostname(), (_err, networkHost, _fam) => {
   console.log(`
 
+    ███████╗██████╗  █████╗ ███╗   ███╗███████╗    ███████╗██╗  ██╗██╗███████╗████████╗███████╗██████╗ 
+    ██╔════╝██╔══██╗██╔══██╗████╗ ████║██╔════╝    ██╔════╝██║  ██║██║██╔════╝╚══██╔══╝██╔════╝██╔══██╗
+    █████╗  ██████╔╝███████║██╔████╔██║█████╗      ███████╗███████║██║█████╗     ██║   █████╗  ██████╔╝
+    ██╔══╝  ██╔══██╗██╔══██║██║╚██╔╝██║██╔══╝      ╚════██║██╔══██║██║██╔══╝     ██║   ██╔══╝  ██╔══██╗
+    ██║     ██║  ██║██║  ██║██║ ╚═╝ ██║███████╗    ███████║██║  ██║██║██║        ██║   ███████╗██║  ██║
+    ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   ╚══════╝╚═╝  ╚═╝
 
+    FrameShifter Dashboard:
 
-
-
-
-
-
-
-
-███████╗██████╗  █████╗ ███╗   ███╗███████╗    ███████╗██╗  ██╗██╗███████╗████████╗███████╗██████╗ 
-██╔════╝██╔══██╗██╔══██╗████╗ ████║██╔════╝    ██╔════╝██║  ██║██║██╔════╝╚══██╔══╝██╔════╝██╔══██╗
-█████╗  ██████╔╝███████║██╔████╔██║█████╗      ███████╗███████║██║█████╗     ██║   █████╗  ██████╔╝
-██╔══╝  ██╔══██╗██╔══██║██║╚██╔╝██║██╔══╝      ╚════██║██╔══██║██║██╔══╝     ██║   ██╔══╝  ██╔══██╗
-██║     ██║  ██║██║  ██║██║ ╚═╝ ██║███████╗    ███████║██║  ██║██║██║        ██║   ███████╗██║  ██║
-╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   ╚══════╝╚═╝  ╚═╝
-
-FrameShifter Dashboard:
-
->> Local:   http://127.0.0.1:${config.serverPort}
->> Network: http://${networkHost}:${config.serverPort}
+    >> Local:   http://127.0.0.1:${config.serverPort}
+    >> Network: http://${networkHost}:${config.serverPort}
 `);
 
   const standalonePlugins = collectStandalonePlugins();
@@ -360,9 +359,9 @@ FrameShifter Dashboard:
     standalonePlugins.forEach((standalone) => {
       console.log(
         `
-${standalone.name}
->> Local:   http://127.0.0.1:${config.serverPort}${standalone.url}
->> Network: http://${networkHost}:${config.serverPort}${standalone.url}`
+    ${standalone.name}
+    >> Local:   http://127.0.0.1:${config.serverPort}${standalone.url}
+    >> Network: http://${networkHost}:${config.serverPort}${standalone.url}`
       );
     });
   }
@@ -377,13 +376,13 @@ ${standalone.name}
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Client.html">Client</a></li><li><a href="Helpers.html">Helpers</a></li><li><a href="Server.html">Server</a></li><li><a href="Ui.html">Ui</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Client.html">Client</a></li><li><a href="ClientHelpers.html">ClientHelpers</a></li><li><a href="ClientUi.html">ClientUi</a></li><li><a href="Server.html">Server</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat May 22 2021 12:14:28 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat May 22 2021 15:05:42 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

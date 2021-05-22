@@ -1,5 +1,5 @@
 /**
- * @namespace Helpers
+ * @namespace ClientHelpers
  */
 window.frameShifterHelpers = {};
 
@@ -7,7 +7,7 @@ window.frameShifterHelpers = {};
  * @function hasData
  * @param  {object} obj object to test
  * @description test whether an object is empty or not
- * @memberof Helpers
+ * @memberof ClientHelpers
  */
 window.frameShifterHelpers.hasData = (obj) => {
   if (obj && Object.keys(obj).length > 0) {
@@ -23,7 +23,7 @@ window.frameShifterHelpers.waitForDataInterval = null;
  * @function waitForData
  * @param  {function} callback function to call when found
  * @description check for frameShifterState every 200ms until found, useful for standalone plugins on first load
- * @memberof Helpers
+ * @memberof ClientHelpers
  */
 window.frameShifterHelpers.waitForData = (callback) => {
   window.frameShifterHelpers.waitForDataInterval = setInterval(() => {
@@ -38,7 +38,7 @@ window.frameShifterHelpers.waitForData = (callback) => {
  * @function getPluginConfigBySlug
  * @param  {string} slug plugin slug in config.json
  * @description check for frameShifterState every 200ms until found, useful for standalone plugins on first load
- * @memberof Helpers
+ * @memberof ClientHelpers
  */
 window.frameShifterHelpers.getPluginConfigBySlug = (slug) => {
   if (!window.frameShifterConfig) {
@@ -62,7 +62,7 @@ window.frameShifterHelpers.getPluginConfigBySlug = (slug) => {
  * @function pipsToNumber
  * @param  {number} pip some type of number
  * @description converts status pip values into normal numbers because im dumb atm
- * @memberof Helpers
+ * @memberof ClientHelpers
  */
 window.frameShifterHelpers.pipsToNumber = (pip) => {
   // giving up and doing this bad
@@ -91,7 +91,7 @@ window.frameShifterHelpers.pipsToNumber = (pip) => {
  * @param  {any} value value to test if present and correct type
  * @param  {string} obj data type to check
  * @description check that a value is present and of expected type
- * @memberof Helpers
+ * @memberof ClientHelpers
  */
 window.frameShifterHelpers.getPlayerData = (value, type) => {
   if (typeof value === "undefined") return null;
@@ -120,7 +120,7 @@ window.frameShifterHelpers.getPlayerData = (value, type) => {
  * @param  {encodedInteger} flagsInt encoded base10 integer from Flags/Flags2
  * @param  {int} len length of the expected binary number
  * @description turn encoded status integer into a 32 length series of binary flags
- * @memberof Helpers
+ * @memberof ClientHelpers
  */
 window.frameShifterHelpers.getBinaryFlags = (flagsInt, len) => {
   if (!flagsInt) return false;
@@ -147,7 +147,7 @@ window.frameShifterHelpers.getBinaryFlags = (flagsInt, len) => {
  * @function playerInfo
  * @param  {string} infoType data to request from various sources in FrameShifter
  * @description grab any data that FrameShifter knows about.
- * @memberof Helpers
+ * @memberof ClientHelpers
  */
 window.frameShifterHelpers.playerInfo = (infoType) => {
   const checkFlag = (flags, num, max) => {
@@ -500,6 +500,14 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
   console.warn(`"${infoType}" is not a valid player info type.`);
   return null;
 };
+
+/**
+ * @function relayEvent
+ * @param  {string} eventName event name to relay, will be recieved at RELAY_EVENTNAME
+ * @param  {object} data data to send along with the relay event
+ * @description send data to all connected clients
+ * @memberof ClientHelpers
+ */
 
 window.frameShifterHelpers.relayEvent = (eventName, data) => {
   const browserEvent = new CustomEvent(eventName.toUpperCase(), {
