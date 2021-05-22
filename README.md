@@ -18,7 +18,7 @@ FrameShifter works by hosting a local web server alongside the Elite Dangerous. 
     - Be sure to include double slashes `\\` in the path name to escape the backslash character.
 1. Download and install [Node.js v14 or higher.](https://nodejs.org/en/download/current/)
 1. Open PowerShell / terminal in FrameShifter directory.
-1. Run `npm install` to install dependencies.
+1. Run `npm install --production` to install dependencies.
 1. Run `npm start`.
 1. Done! Access FrameShifter via the URLs printed in the terminal.
 
