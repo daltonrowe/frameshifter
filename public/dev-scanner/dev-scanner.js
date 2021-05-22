@@ -18,6 +18,7 @@ const modulesinfoOut = document.querySelector("#dev-scanner-modulesinfo");
 const navrouteOut = document.querySelector("#dev-scanner-navroute");
 const outfittingOut = document.querySelector("#dev-scanner-outfitting");
 const shipyardOut = document.querySelector("#dev-scanner-shipyard");
+const backpackOut = document.querySelector("#dev-scanner-backpack");
 const loadOutOut = document.querySelector("#dev-scanner-loadout");
 const loadGameOut = document.querySelector("#dev-scanner-load-game");
 const commanderOut = document.querySelector("#dev-scanner-commander");
@@ -77,6 +78,14 @@ window.addEventListener("UPDATE_OUTFITTING", () => {
 window.addEventListener("UPDATE_SHIPYARD", () => {
   shipyardOut.textContent = JSON.stringify(
     window.frameShifterState.shipyard,
+    null,
+    2
+  );
+});
+
+window.addEventListener("UPDATE_BACKPACK", () => {
+  backpackOut.textContent = JSON.stringify(
+    window.frameShifterState.backpack,
     null,
     2
   );
@@ -147,6 +156,12 @@ const updateAll = () => {
 
   shipyardOut.textContent = JSON.stringify(
     window.frameShifterState.shipyard,
+    null,
+    2
+  );
+
+  backpackOut.textContent = JSON.stringify(
+    window.frameShifterState.backpack,
     null,
     2
   );
