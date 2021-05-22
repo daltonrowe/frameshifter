@@ -89,8 +89,8 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
 
   // boolean information available in binary status flags
   const flagNames = [
-    "landed",
     "docked",
+    "landed",
     "landing-gear",
     "shields-up",
     "supercruise",
@@ -236,7 +236,7 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
     return null;
   }
 
-  // data available from loadout and loadgame events
+  // data available from loadout and loadgame journal events
   const journalNames = [
     "ship",
     "ship-ident",
@@ -253,17 +253,177 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
     "horizons",
     "odyssey",
     "game-mode",
-    "credits",
+    "credits-at-load",
   ];
 
   if (journalNames.includes(infoType)) {
+    switch (infoType) {
+      case "ship":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.Ship,
+          "string"
+        );
+
+      case "ship-ident":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.ShipIdent,
+          "string"
+        );
+
+      case "ship-name":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.ShipName,
+          "string"
+        );
+
+      case "hull-perc":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.HullHealth,
+          "number"
+        );
+
+      case "hull-value":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.HullValue,
+          "number"
+        );
+
+      case "hull-value":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.HullValue,
+          "number"
+        );
+
+      case "unladen-mass":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.UnladenMass,
+          "number"
+        );
+
+      case "fuel-main-cap":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.FuelCapacity.Main,
+          "number"
+        );
+
+      case "fuel-res-cap":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.FuelCapacity.Reserve,
+          "number"
+        );
+
+      case "cargo-cap":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.CargoCapacity,
+          "number"
+        );
+
+      case "max-jump":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.MaxJumpRange,
+          "number"
+        );
+
+      case "rebuy":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.Rebuy,
+          "number"
+        );
+
+      case "rebuy":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.Rebuy,
+          "number"
+        );
+
+      case "cmdr-name":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadgame.Commander,
+          "number"
+        );
+
+      case "horizons":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadgame.Horizons,
+          "number"
+        );
+
+      case "odyssey":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadgame.Odyssey,
+          "number"
+        );
+
+      case "game-mode":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadgame.GameMode,
+          "number"
+        );
+
+      case "credits-at-load":
+        return window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadgame.Credits,
+          "number"
+        );
+
+      default:
+        return null;
+    }
   }
 
   // combinations of multiple data sources
-
   const comboNames = ["fuel-main-perc", "fuel-res-perc", "cargo-perc"];
 
   if (comboNames.includes(infoType)) {
+    switch (infoType) {
+      case "fuel-main-perc":
+        const tCurrentFuel = window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.status.Fuel,
+          "object"
+        );
+
+        const tCurrentFuelCap = window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.FuelCapacity,
+          "object"
+        );
+
+        if (tCurrentFuel !== null && tCurrentFuelCap !== null)
+          return tCurrentFuel.Main / tCurrentFuelCap.Main;
+        return null;
+
+      case "fuel-res-perc":
+        const tCurrentFuelRes = window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.status.Fuel,
+          "object"
+        );
+
+        const tCurrentFuelResCap = window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.FuelCapacity,
+          "number"
+        );
+
+        if (tCurrentFuelRes !== null && tCurrentFuelResCap !== null)
+          return tCurrentFuelRes.Reserve / tCurrentFuelResCap.Reserve;
+        return null;
+
+      case "cargo-perc":
+        const tCurrentCargo = window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.status.Cargo,
+          "object"
+        );
+
+        const tCurrentCargoCap = window.frameShifterHelpers.getPlayerData(
+          window.frameShifterState.loadout.CargoCapacity,
+          "number"
+        );
+
+        if (tCurrentCargo !== null && tCurrentCargoCap !== null)
+          return tCurrentCargo / tCurrentCargoCap;
+        return null;
+
+      default:
+        return null;
+    }
   }
 
   // unknown info type, avoid this :)

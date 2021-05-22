@@ -40,6 +40,42 @@ const updateStatusPanel = function (_event = null) {
     "has-altitude",
     "fsd-jump",
     "srv-highbeam",
+    "on-foot",
+    "in-taxi",
+    "multicrew",
+    "on-foot-in-station",
+    "on-foot-on-planet",
+    "aim-down-sight",
+    "low-o2",
+    "low-health",
+    "cold",
+    "hot",
+    "very-cold",
+    "very-hot",
+    "glide",
+    "on-foot-in-hangar",
+    "on-foot-in-social",
+    "on-foot-exterior",
+    "breathable-atom",
+    "ship",
+    "ship-ident",
+    "ship-name",
+    "hull-perc",
+    "hull-value",
+    "unladen-mass",
+    "fuel-main-cap",
+    "fuel-res-cap",
+    "cargo-cap",
+    "max-jump",
+    "rebuy",
+    "cmdr-name",
+    "horizons",
+    "odyssey",
+    "game-mode",
+    "credits-at-load",
+    "fuel-main-perc",
+    "fuel-res-perc",
+    "cargo-perc",
   ];
 
   for (let i = 0; i < playerInfoTypes.length; i++) {
@@ -52,5 +88,7 @@ const updateStatusPanel = function (_event = null) {
   }
 };
 
+// update everything on every change
 window.addEventListener("UPDATE_STATUS", updateStatusPanel);
+window.addEventListener("UPDATE_LOADOUT", updateStatusPanel);
 updateStatusPanel();
