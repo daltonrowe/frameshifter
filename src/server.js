@@ -2,6 +2,10 @@
  * @namespace Server
  */
 
+const fs = require("fs");
+const path = require("path");
+const process = require("process");
+
 // read user config file
 
 let configDefault;
@@ -9,8 +13,11 @@ let configUser;
 
 try {
   configDefault = require("./config-default.json");
-  configUser = require("../config.json");
+  configUser = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "../config.json"), "utf8")
+  );
 } catch (_err) {
+  console.error(_err);
   console.warn(`
 ==============================
 Hold up! Got a little problem.
@@ -111,9 +118,6 @@ io.on("connection", (socket) => {
 });
 
 // watch relevant status files
-
-const fs = require("fs");
-const { exit } = require("process");
 
 const playerData = {};
 
