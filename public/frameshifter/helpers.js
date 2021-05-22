@@ -1,27 +1,5 @@
 window.frameShifterHelpers = {};
 
-window.frameShifterHelpers.pipsToNumber = (pip) => {
-  // giving up and doing this bad
-  // there is math number bases that i dont quite get
-
-  switch (pip) {
-    case 2:
-      return 1;
-
-    case 4:
-      return 2;
-
-    case 6:
-      return 3;
-
-    case 8:
-      return 4;
-
-    default:
-      return 0;
-  }
-};
-
 window.frameShifterHelpers.hasData = (obj) => {
   if (obj && Object.keys(obj).length > 0) {
     return true;
@@ -59,7 +37,29 @@ window.frameShifterHelpers.getPluginConfigBySlug = (slug) => {
   return false;
 };
 
-// return data if present and as expected
+window.frameShifterHelpers.pipsToNumber = (pip) => {
+  // giving up and doing this bad
+  // there is math number bases that i dont quite get
+
+  switch (pip) {
+    case 2:
+      return 1;
+
+    case 4:
+      return 2;
+
+    case 6:
+      return 3;
+
+    case 8:
+      return 4;
+
+    default:
+      return 0;
+  }
+};
+
+// return data if present with expected type
 window.frameShifterHelpers.getPlayerData = (value, type) => {
   if (typeof value === "undefined") return null;
 
@@ -448,6 +448,8 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
         return null;
     }
   }
+
+  // suggest more types and data combinations on github
 
   // unknown info type, avoid this :)
 
