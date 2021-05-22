@@ -86,7 +86,7 @@ Optional background image URL to use behind the FrameShifter dashboard.
 ## Frame Configuration
 
 ### name
-Name of the plugin, used in standalone URL output.
+Name of the plugin, used in icon tooltip and standalone URL output.
 
 ### desc
 Description of the plugin, currently unused
