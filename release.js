@@ -1,6 +1,22 @@
 const fs = require("fs");
 const path = require("path");
 const archiver = require("archiver");
+const package = require("./package.json");
+
+fs.writeFileSync(
+  "version.txt",
+  `
+======
+FrameShifter v${package.version}
+======
+
+FrameShifter is a tool for displaying Elite Dangerous dashboards and overlays.
+Thank you for using and building with FrameShifter!
+
+https://github.com/daltonrowe/frameshifter
+https://daltonrowe.com
+`
+);
 
 // create a file to stream archive data to.
 const output = fs.createWriteStream(
@@ -38,6 +54,10 @@ archive.file(path.join(__dirname, "build", "FrameShifter.exe"), {
 
 archive.file(path.join(__dirname, "config.json"), {
   name: "config.json",
+});
+
+archive.file(path.join(__dirname, "version.txt"), {
+  name: "version.txt",
 });
 
 archive.directory(path.join(__dirname, "public"), "public");

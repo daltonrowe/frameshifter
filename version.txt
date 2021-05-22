@@ -1,0 +1,10 @@
+
+======
+FrameShifter v1.0.0
+======
+
+FrameShifter is a tool for displaying Elite Dangerous dashboards and overlays.
+Thank you for using and building with FrameShifter!
+
+https://github.com/daltonrowe/frameshifter
+https://daltonrowe.com

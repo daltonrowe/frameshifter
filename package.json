@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/server.js",
     "pkg": "pkg src/server.js --output build/FrameShifter --targets win",
-    "release": "npm run pkg && node release.js",
+    "zip": "node release.js",
+    "release": "npm run pkg && npm run zip",
     "jsdoc": "./node_modules/.bin/jsdoc src/server.js public/frameshifter/client.js public/frameshifter/ui.js public/frameshifter/helpers.js -d docs"
   },
   "author": "Dalton Rowe",
