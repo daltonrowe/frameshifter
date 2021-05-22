@@ -76,7 +76,6 @@ io.on("connection", (socket) => {
 const fs = require("fs");
 
 const playerData = {};
-playerData.special = {};
 
 const playerJournal = [];
 
@@ -159,13 +158,14 @@ const handleLine = (line) => {
   if (playerJournal.length > config.journalMaxLines) playerJournal.pop();
 
   // player state data that is collected from journal logs
-  const specialStates = ["LOADOUT", "LOADGAME", "COMMANDER"];
+  const specialStates = ["LOADOUT", "LOADGAME"];
 
   if (specialStates.includes(eventName)) {
-    playerData.special[eventName] = eventData;
+    const eventLower = eventName.toLowerCase();
+    playerData[eventLower] = eventData;
 
-    io.emit(`UPDATE_${eventName}`, playerData.special[eventName]);
-    fslog(`Player special data ${eventName} updated.`);
+    io.emit(`UPDATE_${eventName}`, playerData[eventLower]);
+    fslog(`Player special data ${eventLower} updated.`);
   }
 };
 

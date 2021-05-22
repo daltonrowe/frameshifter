@@ -64,7 +64,7 @@ window.frameShifterHelpers.getBinaryFlags = () => {
 
 // One giant data grabber to help people make dashboards quickly
 window.frameShifterHelpers.playerInfo = (infoType) => {
-  const checkFlag = (num, max) => {
+  const checkFlag = (flags, num, max) => {
     return flags[max - num] === "1";
   };
 
@@ -111,7 +111,7 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
       console.warn("Player Flags not available.");
       return null;
     } else {
-      return checkFlag(flagNames.indexOf(infoType), 31);
+      return checkFlag(flags, flagNames.indexOf(infoType), 31);
     }
   }
 

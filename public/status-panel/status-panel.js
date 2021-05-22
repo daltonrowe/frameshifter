@@ -48,7 +48,7 @@ const updateStatusPanel = function (_event = null) {
     );
 
     let value = window.frameShifterHelpers.playerInfo(playerInfoTypes[i]);
-    el.textContent = value ? value : "-";
+    el.textContent = value !== null ? `${value}` : "-";
   }
 };
 

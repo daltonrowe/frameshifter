@@ -84,7 +84,7 @@ window.addEventListener("UPDATE_SHIPYARD", () => {
 
 window.addEventListener("UPDATE_LOADGAME", () => {
   loadGameOut.textContent = JSON.stringify(
-    window.frameShifterState.special.LOADGAME,
+    window.frameShifterState.loadgame,
     null,
     2
   );
@@ -92,7 +92,7 @@ window.addEventListener("UPDATE_LOADGAME", () => {
 
 window.addEventListener("UPDATE_LOADOUT", () => {
   loadOutOut.textContent = JSON.stringify(
-    window.frameShifterState.special.LOADOUT,
+    window.frameShifterState.loadout,
     null,
     2
   );
@@ -100,7 +100,7 @@ window.addEventListener("UPDATE_LOADOUT", () => {
 
 window.addEventListener("UPDATE_COMMANDER", () => {
   commanderOut.textContent = JSON.stringify(
-    window.frameShifterState.special.COMMANDER,
+    window.frameShifterState.commander,
     null,
     2
   );
@@ -152,19 +152,19 @@ const updateAll = () => {
   );
 
   loadOutOut.textContent = JSON.stringify(
-    window.frameShifterState.special.LOADOUT,
+    window.frameShifterState.loadout,
     null,
     2
   );
 
   loadGameOut.textContent = JSON.stringify(
-    window.frameShifterState.special.LOADGAME,
+    window.frameShifterState.loadgame,
     null,
     2
   );
 
   commanderOut.textContent = JSON.stringify(
-    window.frameShifterState.special.COMMANDER,
+    window.frameShifterState.commander,
     null,
     2
   );
