@@ -5,7 +5,9 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "pkg": "pkg src/server.js --output build --targets win",
+    "pkg:win": "pkg src/server.js --output build/FrameShifter --targets win",
+    "release:win": "npm run pkg:win && node release.js",
+    "pkg:linux": "pkg src/server.js --output build/FrameShifter --targets linux",
     "jsdoc": "./node_modules/.bin/jsdoc src/server.js public/frameshifter/client.js public/frameshifter/ui.js public/frameshifter/helpers.js -d docs"
   },
   "author": "Dalton Rowe",
@@ -16,6 +18,7 @@
     "tail": "^2.2.2"
   },
   "devDependencies": {
+    "archiver": "^5.3.0",
     "jsdoc": "^3.6.7"
   }
 }
