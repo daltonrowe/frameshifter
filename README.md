@@ -33,7 +33,6 @@ FrameShifter works by hosting a local web server alongside the Elite Dangerous. 
 1. Done! **Any tablet, phone, monitor, or OBS browser source can display FrameShifter!**
 
 - Use the "Local" URL printed in the terminal to access FrameShifter on the host computer.
-
 ## Configuration
 
 User configuration is performed through the `config.json` in the root of the FrameShifter directory.
@@ -42,7 +41,7 @@ User configuration is performed through the `config.json` in the root of the Fra
 
 ## Adding Plugins
 
-[View a curated list of available plugins here.](./README-plugins-available.md)
+[TODO: View a curated list of available plugins here.](./README-plugins-available.md)
 
 1. Place the plugin folder and files in `public` directory
 1. Edit `config.json`
@@ -51,6 +50,10 @@ User configuration is performed through the `config.json` in the root of the Fra
 
 ## Creating Plugins
 
-Built with Node and vanilla JS, FrameShifter aims to enable anyone familiar with web technologies (or not!) to easily and quickly make rad dashboards and overlays.
+Built with simple HTML + CSS + JS, FrameShifter aims to enable anyone familiar with web technologies (or not!) to easily and quickly make rad dashboards and overlays.
 
 [Get started making plugins here.](./README-plugins.md)
+
+## Documentation
+
+[View JSDocs on Github Pages](https://daltonrowe.github.io/frameshifter/index.html)
