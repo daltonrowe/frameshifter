@@ -1,5 +1,26 @@
 // read user config file
-const config = require("../config.json");
+
+let configDefault;
+let configUser;
+
+try {
+  configDefault = require("./config-default.json");
+  configUser = require("../config.json");
+} catch (_err) {
+  console.warn(`
+==============================
+Hold up! Got a little problem.
+==============================
+
+Looks like the config.json file is improperly formatted, probably a missing comma or quotes. 
+Please try a tool such as https://jsoneditoronline.org/ to test your config.json file for errors.
+
+FrameShifter exiting...
+`);
+  process.exit(0);
+}
+
+const config = { ...configDefault, ...configUser };
 
 // custom logging function for config controls
 const fslog = (...args) => {
@@ -74,6 +95,7 @@ io.on("connection", (socket) => {
 // watch relevant status files
 
 const fs = require("fs");
+const { exit } = require("process");
 
 const playerData = {};
 
@@ -239,6 +261,15 @@ const collectStandalonePlugins = () => {
 
 require("dns").lookup(require("os").hostname(), (_err, networkHost, _fam) => {
   console.log(`
+
+
+
+
+
+
+
+
+
 
 ███████╗██████╗  █████╗ ███╗   ███╗███████╗    ███████╗██╗  ██╗██╗███████╗████████╗███████╗██████╗ 
 ██╔════╝██╔══██╗██╔══██╗████╗ ████║██╔════╝    ██╔════╝██║  ██║██║██╔════╝╚══██╔══╝██╔════╝██╔══██╗

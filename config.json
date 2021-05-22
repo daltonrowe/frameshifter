@@ -41,12 +41,6 @@
             ]
         }
     ],
-    "journalMaxLines": 50,
-    "journalCheckSecs": 60,
-    "journalFileRefreshSecs": 3,
-    "statusCheckSecs": 2,
-    "serverPort": 3307,
-    "logging": "error",
     "hueRotate": 0,
     "hueRotateIframes": false,
     "backgroundImage": "/edcss/default_bg.jpg"

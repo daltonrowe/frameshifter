@@ -41,8 +41,8 @@ window.frameShifterHelpers.getPlayerData = (value, type) => {
 };
 
 // turn encoded status integer into a 32 length series of binary flags
-window.frameShifterHelpers.getBinaryFlags = () => {
-  if (!window.frameShifterState.status.Flags) return false;
+window.frameShifterHelpers.getBinaryFlags = (flagsInt, len) => {
+  if (!flagsInt) return false;
 
   function padding(char, num) {
     let str = "";
@@ -52,10 +52,10 @@ window.frameShifterHelpers.getBinaryFlags = () => {
     return str;
   }
 
-  let flagBinary = window.frameShifterState.status.Flags.toString(2);
+  let flagBinary = flagsInt.toString(2);
 
-  if (flagBinary.length < 32) {
-    const offset = 32 - flagBinary.length;
+  if (flagBinary.length < len) {
+    const offset = len - flagBinary.length;
     flagBinary = `${padding("0", offset)}${flagBinary}`;
   }
 
@@ -68,7 +68,7 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
     return flags[max - num] === "1";
   };
 
-  // boolean information available in binary Status flags
+  // boolean information available in binary status flags
   const flagNames = [
     "landed",
     "docked",
@@ -105,17 +105,16 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
   ];
 
   if (flagNames.includes(infoType)) {
-    const flags = window.frameShifterHelpers.getBinaryFlags();
+    const flags = window.frameShifterHelpers.getBinaryFlags(
+      window.frameShifterState.status.Flags,
+      32
+    );
 
-    if (!flags) {
-      console.warn("Player Flags not available.");
-      return null;
-    } else {
-      return checkFlag(flags, flagNames.indexOf(infoType), 31);
-    }
+    if (flags) return checkFlag(flags, flagNames.indexOf(infoType), 31);
+    return null;
   }
 
-  // Data available from various places in Status.json
+  // data available from various places in Status.json
   const statusNames = [
     "cargo-weight",
     "firegroup",
@@ -187,27 +186,69 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
     }
   }
 
-  // TODO
+  // data available in odyssey flags2
+  const flag2Names = [
+    "on-foot",
+    "in-taxi",
+    "multicrew",
+    "on-foot-in-station",
+    "on-foot-on-planet",
+    "aim-down-sight",
+    "low-o2",
+    "low-health",
+    "cold",
+    "hot",
+    "very-cold",
+    "very-hot",
+    "glide",
+    "on-foot-in-hangar",
+    "on-foot-in-social",
+    "on-foot-exterior",
+    "breathable-atom",
+  ];
 
-  // ship-type
-  // ship-ident
-  // ship-name
-  // hull-health
-  // hull-value
-  // unladen-mass
-  // fuel-main-cap
-  // fuel-res-cap
-  // cargo-cap
-  // max-jump
-  // rebuy
-  // cmdr-name
-  // horizons
-  // odyssey
-  // game-mode
-  // credits
+  if (flag2Names.includes(infoType)) {
+    const flags2 = window.frameShifterHelpers.getBinaryFlags(
+      window.frameShifterState.status.Flags2,
+      16
+    );
 
-  // unknown info type, avoid this
+    if (flags2) return checkFlag(flags2, flag2Names.indexOf(infoType), 15);
+    return null;
+  }
 
-  console.warn(`Player info "${infoType}" not found or available.`);
+  // data available from loadout and loadgame events
+  const journalNames = [
+    "ship",
+    "ship-ident",
+    "ship-name",
+    "hull-perc",
+    "hull-value",
+    "unladen-mass",
+    "fuel-main-cap",
+    "fuel-res-cap",
+    "cargo-cap",
+    "max-jump",
+    "rebuy",
+    "cmdr-name",
+    "horizons",
+    "odyssey",
+    "game-mode",
+    "credits",
+  ];
+
+  if (journalNames.includes(infoType)) {
+  }
+
+  // combinations of multiple data sources
+
+  const comboNames = ["fuel-main-perc", "fuel-res-perc", "cargo-perc"];
+
+  if (comboNames.includes(infoType)) {
+  }
+
+  // unknown info type, avoid this :)
+
+  console.warn(`"${infoType}" is not a valid player info type.`);
   return null;
 };
