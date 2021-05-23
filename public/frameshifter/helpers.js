@@ -195,6 +195,7 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
       32
     );
 
+    // i don't understand why the correct max in 31 here but 16 below
     if (flags) return checkFlag(flags, flagNames.indexOf(infoType), 31);
     return null;
   }
@@ -302,7 +303,7 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
       16
     );
 
-    if (flags2) return checkFlag(flags2, flag2Names.indexOf(infoType), 15);
+    if (flags2) return checkFlag(flags2, flag2Names.indexOf(infoType), 16);
     return null;
   }
 
