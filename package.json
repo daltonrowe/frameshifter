@@ -1,6 +1,6 @@
 {
   "name": "frameshifterjs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Elite Dangerous JS tools",
   "main": "src/server.js",
   "scripts": {
