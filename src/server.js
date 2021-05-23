@@ -5,7 +5,7 @@
 const fs = require("fs");
 const path = require("path");
 const process = require("process");
-const package = require("../package.json");
+const packageJson = require("../package.json");
 
 const isUnpackaged = process.argv.includes("ENV=unpackaged");
 console.log(process.argv);
@@ -328,7 +328,7 @@ require("dns").lookup(require("os").hostname(), (_err, networkHost, _fam) => {
     ██║     ██║  ██║██║  ██║██║ ╚═╝ ██║███████╗    ███████║██║  ██║██║██║        ██║   ███████╗██║  ██║
     ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   ╚══════╝╚═╝  ╚═╝
 
-    FrameShifter Dashboard v${package.version}:
+    FrameShifter Dashboard v${packageJson.version}:
 
     >> Local:   http://127.0.0.1:${config.serverPort}
     >> Network: http://${networkHost}:${config.serverPort}`);
