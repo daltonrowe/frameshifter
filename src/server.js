@@ -7,9 +7,10 @@ const path = require("path");
 const process = require("process");
 const packageJson = require("../package.json");
 
-const isUnpackaged = process.argv.includes("ENV=unpackaged");
-console.log(process.argv);
-console.log(isUnpackaged);
+const isLocal = typeof process.pkg === "undefined";
+const rootDir = isLocal
+  ? path.join(__dirname, "../")
+  : path.dirname(process.execPath);
 
 // read user config file
 
@@ -19,7 +20,7 @@ let configUser;
 try {
   configDefault = require("./config-default.json");
   configUser = JSON.parse(
-    fs.readFileSync(path.join(__dirname, "../config.json"), "utf8")
+    fs.readFileSync(path.join(rootDir, "config.json"), "utf8")
   );
 } catch (_err) {
   console.error(_err);
@@ -105,10 +106,7 @@ app.use((req, res, next) => {
 });
 
 // serve files in public directory as static files
-const publicPath = isUnpackaged ? "../public" : "./public";
-const staticPath = path.join(__dirname, publicPath);
-console.log(staticPath);
-app.use(express.static(staticPath));
+app.use(express.static(path.join(rootDir, "public")));
 
 // when a new client connects, send them all the current info
 io.on("connection", (socket) => {

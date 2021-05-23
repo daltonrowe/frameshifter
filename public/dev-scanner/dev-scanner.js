@@ -11,6 +11,7 @@ allToggles.forEach((toggle) => {
 });
 
 const devScannerRelay = (_event) => {
+  console.log("Sending Dev Scanner Relay");
   window.frameShifterHelpers.sendRelay("DEVSCANNER", {
     pizza: "time",
     every: "body!",
@@ -118,6 +119,7 @@ window.addEventListener("UPDATE_LOADOUT", () => {
 });
 
 window.addEventListener("RELAY_DEVSCANNER", (event) => {
+  console.log("Recieved Dev Scanner Relay");
   relayOut.textContent = JSON.stringify(event.detail, null, 2);
 });
 
