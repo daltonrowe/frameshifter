@@ -2,6 +2,8 @@
 
 FrameShifter is made to be easy, as such it has no build step. If you don't know what that means then you're in luck :). However this readme does assume some knowledge of HTML, CSS, and Javascript.
 
+[View JSDocs on Github Pages](https://daltonrowe.github.io/frameshifter/index.html)
+
 ## Creating a dashboard plugin
 
 **FrameShifter plugins are folders containing an `index.html` snippet.**
@@ -36,11 +38,15 @@ Below are the files and config updates require to make player Nav Route data app
 `public/my-plugin/index.html`
 
 ```html
-<h1>My New Plugin</h1>
-<div id="my-plugin-output"></div>
+
+<div id="my-plugin-wrapper" class="frame-default">
+
+  <h1>My New Plugin</h1>
+  <div id="my-plugin-output"></div>
+
+</div>
 
 <link rel="stylesheet" href="/my-plugin/my-plugin-styles.css">
-
 <script src="/my-plugin/my-plugin-script.js">
 ```
 
@@ -65,35 +71,99 @@ window.addEventListener("UPDATE_NAVROUTE", () => {
 
 ```css
 /* basic dashboard padding */
-#my-plugin-output {
-  height: 100%;
-  padding: 20px 20px 0 20px;
-  overflow-y: scroll;
+#my-plugin-wrapper {
+  background:blue;
 }
 ```
 
 ---
 
-## Available Data
+## Helpers
 
-Try using the built in dashboard plugin `Dev Scanner` to explore available data and behavior.
+FrameShifter provides several helper functions to make development of dashboards easier.
 
-Learn more about information provided by Elite Dangerous status files and player journal [here.](https://elite-journal.readthedocs.io/en/latest/Status%20File/)
+Most notable is the function `window.frameShifterHelpers.playerInfo('some-info-type')`. This provides normalized data from all parts of FrameShifter.
 
-In Javascript the following data is available on the global `window` object.
+`playerInfo()` will return the value if the request data is present, and `null` if not currently available.
 
-### `window.frameShifterState`
+A full list of player info types, see the `status-panel` plugin for examples:
 
-- Contains all data currently(!) in the player's status files.
-
-### `window.frameShifterJournal`
-
-- Contains an array of the last 50 (by default) lines in the player's Journal .log file
-- Default lines can be adjusted using the `journalMaxLines` property in `config.json`.
-
-### `window.frameShifterConfig`
-
-- Contains all the information in the user config file, expect `username`, `password` and `journalDir`.
+- `docked`
+- `landed`
+- `landing-gear`
+- `shields-up`
+- `supercruise`
+- `fa-off`
+- `hardpoints`
+- `in-wing`
+- `external-lights`
+- `cargo-scoop`
+- `silent-running`
+- `scooping-fuel`
+- `srv-handbrake`
+- `srv-turret`
+- `srv-turret-retracted`
+- `srv-drive-assist`
+- `mass-locked`
+- `fsd-charging`
+- `fsd-cooldown`
+- `low-fuel`
+- `overheat`
+- `has-lat-lng`
+- `danger`
+- `interdicted`
+- `in-ship`
+- `in-fighter`
+- `in-srv`
+- `analysis-mode`
+- `night-vision`
+- `has-altitude`
+- `fsd-jump`
+- `srv-highbeam`
+- `cargo-weight`
+- `firegroup`
+- `legal-state`
+- `fuel-main`
+- `fuel-res`
+- `pips-sys`
+- `pips-eng`
+- `pips-wep`
+- `on-foot`
+- `in-taxi`
+- `multicrew`
+- `on-foot-in-station`
+- `on-foot-on-planet`
+- `aim-down-sight`
+- `low-o2`
+- `low-health`
+- `cold`
+- `hot`
+- `very-cold`
+- `very-hot`
+- `glide`
+- `on-foot-in-hangar`
+- `on-foot-in-social`
+- `on-foot-exterior`
+- `breathable-atom`
+- `ship`
+- `ship-ident`
+- `ship-name`
+- `hull-perc`
+- `hull-value`
+- `unladen-mass`
+- `fuel-main-cap`
+- `fuel-res-cap`
+- `cargo-cap`
+- `max-jump`
+- `rebuy`
+- `cmdr-name`
+- `horizons`
+- `odyssey`
+- `game-mode`
+- `credits-at-load`
+- `fuel-main-perc` 
+- `fuel-res-perc` 
+- `cargo-perc`
 
 ---
 
@@ -152,3 +222,26 @@ Full list of update events:
 - `UPDATE_NAVROUTE`
 - `UPDATE_BACKPACK`
 - `UPDATE_JOURNAL`
+
+---
+
+## Available Data
+
+Try using the built in dashboard plugin `Dev Scanner` to explore available data and behavior.
+
+Learn more about information provided by Elite Dangerous status files and player journal [here.](https://elite-journal.readthedocs.io/en/latest/Status%20File/)
+
+In Javascript the following data is available on the global `window` object.
+
+### `window.frameShifterState`
+
+- Contains all data currently(!) in the player's status files.
+
+### `window.frameShifterJournal`
+
+- Contains an array of the last 50 (by default) lines in the player's Journal .log file
+- Default lines can be adjusted using the `journalMaxLines` property in `config.json`.
+
+### `window.frameShifterConfig`
+
+- Contains all the information in the user config file, expect `username`, `password` and `journalDir`.
