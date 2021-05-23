@@ -145,13 +145,11 @@ const watchPlayerFile = (file, property) => {
 
   // check for file on first load
   if (fs.existsSync(file)) {
-    fs.readFile(file, "utf8", (err, data) => {
-      if (err) {
-        fserror(err);
-        return;
-      }
-      playerData[property] = JSON.parse(data);
-    });
+    try {
+      playerData[property] = JSON.parse(fs.readFileSync(file, "utf8"));
+    } catch (err) {
+      fswarn(err);
+    }
   }
 
   fs.watchFile(
@@ -167,7 +165,7 @@ const watchPlayerFile = (file, property) => {
       try {
         newData = JSON.parse(fs.readFileSync(file, "utf8"));
       } catch (err) {
-        fserror(`Error reading ${file}`, err);
+        fswarn(`Error reading ${file}`, err);
         return;
       }
 

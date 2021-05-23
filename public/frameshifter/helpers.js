@@ -396,7 +396,7 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
 
       case "rebuy":
         return window.frameShifterHelpers.testPlayerData(
-          window?.frameShifterState?.loadout?.Rebu,
+          window?.frameShifterState?.loadout?.Rebuy,
           "number"
         );
 
@@ -441,48 +441,48 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
   if (comboNames.includes(infoType)) {
     switch (infoType) {
       case "fuel-main-perc":
-        const tCurrentFuel = window.frameShifterHelpers.testPlayerData(
-          window?.frameShifterState?.status?.Fuel,
-          "object"
-        );
-
-        const tCurrentFuelCap = window.frameShifterHelpers.testPlayerData(
-          window?.frameShifterState?.loadout?.FuelCapacity,
-          "object"
-        );
-
-        if (tCurrentFuel !== null && tCurrentFuelCap !== null)
-          return tCurrentFuel.Main / tCurrentFuelCap.Main;
-        return null;
-
-      case "fuel-res-perc":
-        const tCurrentFuelRes = window.frameShifterHelpers.testPlayerData(
-          window?.frameShifterState?.status?.Fuel,
-          "object"
-        );
-
-        const tCurrentFuelResCap = window.frameShifterHelpers.testPlayerData(
-          window?.frameShifterState?.loadout?.FuelCapacity,
+        const tFuelMainPerc = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.status?.Cargo,
           "number"
         );
 
-        if (tCurrentFuelRes !== null && tCurrentFuelResCap !== null)
-          return tCurrentFuelRes.Reserve / tCurrentFuelResCap.Reserve;
-        return null;
-
-      case "cargo-perc":
-        const tCurrentCargo = window.frameShifterHelpers.testPlayerData(
-          window?.frameShifterState?.status?.Cargo,
-          "object"
-        );
-
-        const tCurrentCargoCap = window.frameShifterHelpers.testPlayerData(
+        const tFuelMainCapPerc = window.frameShifterHelpers.testPlayerData(
           window?.frameShifterState?.loadout?.CargoCapacity,
           "number"
         );
 
-        if (tCurrentCargo !== null && tCurrentCargoCap !== null)
-          return tCurrentCargo / tCurrentCargoCap;
+        if (tFuelMainPerc !== null && tFuelMainCapPerc !== null)
+          return `${100 - tFuelMainPerc / tFuelMainCapPerc}%`;
+        return null;
+
+      case "fuel-res-perc":
+        const tFuelResPerc = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.FuelCapacity.Reserve,
+          "number"
+        );
+
+        const tFuelResCapPerc = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.FuelCapacity.Reserve,
+          "number"
+        );
+
+        if (tFuelResPerc !== null && tFuelResCapPerc !== null)
+          return `${100 - tFuelResPerc / tFuelResCapPerc}%`;
+        return null;
+
+      case "cargo-perc":
+        const tCargoPerc = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.status?.Cargo,
+          "number"
+        );
+
+        const tCargoCapPerc = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.CargoCapacity,
+          "number"
+        );
+
+        if (tCargoPerc !== null && tCargoCapPerc !== null)
+          return `${tCargoPerc / tCargoCapPerc}%`;
         return null;
 
       default:

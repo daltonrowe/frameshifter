@@ -82,9 +82,16 @@ const updateStatusPanel = function (_event = null) {
     const el = document.querySelector(
       `#status-panel-${playerInfoTypes[i]} .status-value`
     );
+    const wrap = el.parentNode.parentNode;
 
     let value = window.frameShifterHelpers.playerInfo(playerInfoTypes[i]);
     el.textContent = value !== null ? `${value}` : "-";
+
+    if (value === true) {
+      wrap.dataset.statusPanelLight = true;
+    } else {
+      wrap.dataset.statusPanelLight = false;
+    }
   }
 };
 

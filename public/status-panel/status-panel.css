@@ -10,12 +10,17 @@
 }
 
 #status-panel > .status-data { 
-    flex:0 0 18%;
-    margin-right:2%;
+    flex:0 0 24%;
+    margin-right:1.33333%;
     margin-bottom:10px;
 }
 
-#status-panel > div:nth-of-type(5n) {
+.status-data[data-status-panel-light=true] {
+    background:var(--primary-dark);
+    color:var(--bg);
+}
+
+#status-panel > div:nth-of-type(4n) {
     margin-right:0;
 }
 
@@ -30,4 +35,10 @@
     width:100%;
     display:flex;
     justify-content: space-between;
+    font-family: 'display-font';
+    font-size:14px;
+}
+
+.status-data .status-label .status-value {
+    font-family: sans-serif;
 }
