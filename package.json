@@ -4,7 +4,7 @@
   "description": "Elite Dangerous JS tools",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "node src/server.js ENV=unpackaged",
     "pkg": "pkg src/server.js --output build/FrameShifter --targets win",
     "zip": "node release.js",
     "release": "npm run jsdoc && npm run pkg && npm run zip",

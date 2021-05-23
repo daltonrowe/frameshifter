@@ -5,6 +5,9 @@
 const fs = require("fs");
 const path = require("path");
 const process = require("process");
+const package = require("../package.json");
+
+const isPackaged = !process.argv.includes("ENV=unpackaged");
 
 // read user config file
 
@@ -99,7 +102,8 @@ app.use((req, res, next) => {
 });
 
 // serve files in public directory as static files
-app.use(express.static(path.join(__dirname, "../public")));
+const publicPath = isPackaged ? "public" : "../public";
+app.use(express.static(path.join(__dirname, publicPath)));
 
 // when a new client connects, send them all the current info
 io.on("connection", (socket) => {
@@ -319,7 +323,7 @@ require("dns").lookup(require("os").hostname(), (_err, networkHost, _fam) => {
     ██║     ██║  ██║██║  ██║██║ ╚═╝ ██║███████╗    ███████║██║  ██║██║██║        ██║   ███████╗██║  ██║
     ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   ╚══════╝╚═╝  ╚═╝
 
-    FrameShifter Dashboard:
+    FrameShifter Dashboard v${package.version}:
 
     >> Local:   http://127.0.0.1:${config.serverPort}
     >> Network: http://${networkHost}:${config.serverPort}`);
