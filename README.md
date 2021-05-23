@@ -8,6 +8,8 @@ Extendable with HTML/CSS/JS, FrameShifter makes consuming data from status files
 
 FrameShifter works by hosting a local web server alongside the Elite Dangerous. This server reads your Elite Dangerous status files and player journal, and sends it to connected browser dashboards via websockets!
 
+<img src="https://github.com/daltonrowe/frameshifter/raw/master/public/welcome/screenshot.jpg">
+
 ## Installing FrameShifter
 
 - On the device where you play Elite Dangerous:
