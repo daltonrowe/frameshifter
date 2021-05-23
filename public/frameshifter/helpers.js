@@ -195,7 +195,6 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
       32
     );
 
-    // i don't understand why the correct max in 31 here but 16 below
     if (flags) return checkFlag(flags, flagNames.indexOf(infoType), 31);
     return null;
   }
@@ -303,6 +302,8 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
       16
     );
 
+    // this is bugged but i'm not sure how
+    // i don't understand why the correct max in 31 above but 16 here
     if (flags2) return checkFlag(flags2, flag2Names.indexOf(infoType), 16);
     return null;
   }
@@ -484,7 +485,7 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
         );
 
         if (tCargoPerc !== null && tCargoCapPerc !== null)
-          return `${tCargoPerc / tCargoCapPerc}%`;
+          return `${(tCargoPerc / tCargoCapPerc) * 100}%`;
         return null;
 
       default:
