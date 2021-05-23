@@ -1,8 +1,8 @@
 {
-    "journalMaxLines": 200,
-    "journalCheckSecs": 60,
-    "journalFileRefreshSecs": 3,
-    "statusCheckSecs": 2,
-    "logging": "error",
-    "serverPort": 3307
+  "journalMaxLines": 200,
+  "journalCheckSecs": 60,
+  "journalFileRefreshSecs": 3,
+  "statusCheckSecs": 2,
+  "logging": "error",
+  "serverPort": 3307
 }

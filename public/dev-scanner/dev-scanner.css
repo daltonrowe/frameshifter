@@ -1,39 +1,39 @@
 * {
-    box-sizing:border-box;
+  box-sizing: border-box;
 }
 
 body.standalone {
-    overflow-y: auto;
+  overflow-y: auto;
 }
 
 .standalone #dev-scanner {
-    width:100vw;
-    padding:0 40px 0 20px;
+  width: 100vw;
+  padding: 0 40px 0 20px;
 }
 
 .dev-scanner-collapse-next {
-    cursor: pointer;
-    user-select: none;
+  cursor: pointer;
+  user-select: none;
 }
 
 .dev-scanner-collapse-next:hover + .dev-scanner-output {
-    background:var(--bg-dark);
-    border:1px solid var(--text);
+  background: var(--bg-dark);
+  border: 1px solid var(--text);
 }
 
 .dev-scanner-output {
-    height:auto;
-    max-height:none;
-    margin:10px 0;
-    border:1px solid var(--text-light);
-    overflow-y:scroll;
-    resize:vertical;
-    color:#999;
-    background:var(--bg);
+  height: auto;
+  max-height: none;
+  margin: 10px 0;
+  border: 1px solid var(--text-light);
+  overflow-y: scroll;
+  resize: vertical;
+  color: #999;
+  background: var(--bg);
 }
 
 .dev-scanner-output.collapsed {
-    max-height:65px;
-    overflow: hidden;
-    resize:none;
+  max-height: 65px;
+  overflow: hidden;
+  resize: none;
 }

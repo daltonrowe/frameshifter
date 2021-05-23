@@ -27,11 +27,11 @@ Array of plugins to use in the FrameShifter dashboard. For more information abou
 
 ### journalMaxLines
 
-Maximum number of lines (events) to store from the player journal. 
+Maximum number of lines (events) to store from the player journal.
 
 ### journalCheckSecs
 
-Number of seconds to wait between checking for new journal log files. 
+Number of seconds to wait between checking for new journal log files.
 
 Elite Dangerous outputs different journal log files for each play session. FrameShifter detects these and automatically uses the newest journal log.
 
@@ -45,7 +45,7 @@ During development it was noticed that journal logs only update when read. Frame
 
 Number of seconds between status file updates
 
-Elite Dangerous outputs several JSON files with information about the player state.  FrameShifter watches these files, checking every `x` seconds.
+Elite Dangerous outputs several JSON files with information about the player state. FrameShifter watches these files, checking every `x` seconds.
 
 ### serverPort
 
@@ -86,26 +86,30 @@ Optional background image URL to use behind the FrameShifter dashboard.
 ## Frame Configuration
 
 ### name
+
 Name of the plugin, used in icon tooltip and standalone URL output.
 
 ### desc
+
 Description of the plugin, currently unused
 
 ### icon
+
 Optional icon URL. If no URL is provided no icon will be generated in the dashboard.
 
 ### type
+
 `internal | iframe | standalone`
 
-When the FrameShifter dashboard loads, plugins with type `internal` are fetching and inserting using the `public/PLUGINSLUG/index.html` snippet. The directory used is determined by the plugin `slug` property.
+When the FrameShifter dashboard loads, plugins with type `internal` are fetched and inserted using the `public/PLUGINSLUG/index.html` snippet. The directory used is determined by the plugin `slug` property.
 
 ```json
 {
-    "name": "Welcome Screen",
-    "desc": "Initial about and splash screen",
-    "icon": "/welcome/icon.svg",
-    "type": "internal",
-    "slug": "welcome"
+  "name": "Welcome Screen",
+  "desc": "Initial about and splash screen",
+  "icon": "/welcome/icon.svg",
+  "type": "internal",
+  "slug": "welcome"
 }
 ```
 
@@ -113,11 +117,11 @@ Type `iframe` provides a simple and quick way to access embedded websites throug
 
 ```json
 {
-    "name": "Coriolis Shipyard",
-    "desc": "Example iframe for Coriolis Shipyard app",
-    "icon": "/icons/coriolis.svg",
-    "type": "iframe",
-    "iframeUrl": "https://coriolis.io/"
+  "name": "Coriolis Shipyard",
+  "desc": "Example iframe for Coriolis Shipyard app",
+  "icon": "/icons/coriolis.svg",
+  "type": "iframe",
+  "iframeUrl": "https://coriolis.io/"
 }
 ```
 

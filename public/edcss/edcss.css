@@ -7,7 +7,7 @@
   --bg-dark: rgb(0, 0, 0, 0.75);
   --text: #eee;
   --text-light: #999;
-  --svg-filter:  brightness(0.5) sepia(1) hue-rotate(6deg) saturate(100);
+  --svg-filter: brightness(0.5) sepia(1) hue-rotate(6deg) saturate(100);
 }
 
 @font-face {
@@ -16,11 +16,11 @@
 }
 
 body {
-  width:100vw;
-  height:100vw;
+  width: 100vw;
+  height: 100vw;
   background-color: var(--bg);
   position: relative;
-  color:var(--text);
+  color: var(--text);
   font-family: sans-serif;
   scrollbar-color: var(--primary) var(--bg);
   background-repeat: no-repeat;
@@ -34,11 +34,20 @@ body {
   background: var(--primary);
 }
 
-h1,h2,h3,h4,h5,h6 {
-  font-family: 'display-font', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "display-font", sans-serif;
 }
 
-h2,h3,h4,h5,h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: normal;
   font-size: 18px;
 }
@@ -61,7 +70,7 @@ p {
 }
 
 #sidebar li {
-  position:relative;
+  position: relative;
   width: 60px;
   height: 60px;
   background-color: var(--bg);
@@ -79,25 +88,25 @@ p {
 #sidebar li::after {
   content: attr(data-name);
   pointer-events: none;
-  
-  position:absolute;
-  top:0;
-  left:calc(100% + 10px);
-  z-index:99;
-  transform:  translateX(-6px);
 
-  background:var(--primary);
-  color:var(--bg);
-  
-  width:100px;
-  padding:6px;
+  position: absolute;
+  top: 0;
+  left: calc(100% + 10px);
+  z-index: 99;
+  transform: translateX(-6px);
+
+  background: var(--primary);
+  color: var(--bg);
+
+  width: 100px;
+  padding: 6px;
   font-size: 12px;
-  opacity:0;
-  transition:transform .5s ease, opacity .5s ease;
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 #sidebar li:hover::after {
-  opacity:1;
+  opacity: 1;
   transform: translateX(0);
 }
 
@@ -116,11 +125,11 @@ p {
 }
 
 #sidebar li:hover img {
-  filter:brightness(0);
+  filter: brightness(0);
 }
 
 #sidebar li.active img {
-  filter:brightness(0);
+  filter: brightness(0);
 }
 
 #sidebar li:not(:last-of-type) {
@@ -133,32 +142,32 @@ p {
   top: 0;
   right: 0;
   height: 100vh;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 #background-image {
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-1;
-  width:100vw;
-  height:100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
   object-position: center center;
 }
 
 iframe {
-    border:none;
+  border: none;
 }
 
 h1 {
-  margin-bottom:30px;
+  margin-bottom: 30px;
   font-size: 32px;
-  color:var(--primary);
+  color: var(--primary);
 }
 
 .frame-default {
-  height:100%;
-  padding:20px 20px 0 20px;
+  height: 100%;
+  padding: 20px 20px 0 20px;
   overflow-y: scroll;
 }

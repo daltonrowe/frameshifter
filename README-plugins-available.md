@@ -19,6 +19,7 @@ Status panel with examples of all the general data FrameShifter has available.
 Basic FrameShifter CSS styles.
 
 ### Dev Scanner
+
 Built in tool for viewing FramerShifter data as it updates.
 
 ---

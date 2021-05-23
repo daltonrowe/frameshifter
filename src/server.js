@@ -235,7 +235,7 @@ const handleLine = (line) => {
 
 /**
  * @param  {string} nextLog file name of newest discovered log file
- * @description handles each line of journal log as they are discovered. store important journal entries in playerData
+ * @description change file watcher over to new log file after discovery
  * @memberof Server
  */
 const swapToNewLog = (nextLog) => {

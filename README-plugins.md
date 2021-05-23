@@ -72,7 +72,7 @@ window.addEventListener("UPDATE_NAVROUTE", () => {
 ```css
 /* basic dashboard padding */
 #my-plugin-wrapper {
-  background:blue;
+  background: blue;
 }
 ```
 
@@ -161,8 +161,8 @@ A full list of player info types, see the `status-panel` plugin for examples:
 - `odyssey`
 - `game-mode`
 - `credits-at-load`
-- `fuel-main-perc` 
-- `fuel-res-perc` 
+- `fuel-main-perc`
+- `fuel-res-perc`
 - `cargo-perc`
 
 ---
