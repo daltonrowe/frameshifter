@@ -7,7 +7,9 @@ const path = require("path");
 const process = require("process");
 const package = require("../package.json");
 
-const isPackaged = !process.argv.includes("ENV=unpackaged");
+const isUnpackaged = process.argv.includes("ENV=unpackaged");
+console.log(process.argv);
+console.log(isUnpackaged);
 
 // read user config file
 
@@ -79,6 +81,7 @@ const app = express();
 const http = require("http");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
+const { isUndefined } = require("util");
 const io = new Server(server);
 
 // basic auth
@@ -102,8 +105,10 @@ app.use((req, res, next) => {
 });
 
 // serve files in public directory as static files
-const publicPath = isPackaged ? "public" : "../public";
-app.use(express.static(path.join(__dirname, publicPath)));
+const publicPath = isUnpackaged ? "../public" : "./public";
+const staticPath = path.join(__dirname, publicPath);
+console.log(staticPath);
+app.use(express.static(staticPath));
 
 // when a new client connects, send them all the current info
 io.on("connection", (socket) => {
