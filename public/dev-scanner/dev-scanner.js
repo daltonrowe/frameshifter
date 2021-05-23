@@ -10,6 +10,16 @@ allToggles.forEach((toggle) => {
   toggle.addEventListener("click", toggleNext);
 });
 
+const devScannerRelay = (_event) => {
+  window.frameShifterHelpers.sendRelay("DEVSCANNER", {
+    pizza: "time",
+    every: "body!",
+  });
+};
+
+const relayHeader = document.querySelector("#relay-header");
+relayHeader.addEventListener("click", devScannerRelay);
+
 const journalOut = document.querySelector("#dev-scanner-journal");
 const statusOut = document.querySelector("#dev-scanner-status");
 const cargoOut = document.querySelector("#dev-scanner-cargo");
@@ -21,6 +31,7 @@ const shipyardOut = document.querySelector("#dev-scanner-shipyard");
 const backpackOut = document.querySelector("#dev-scanner-backpack");
 const loadOutOut = document.querySelector("#dev-scanner-loadout");
 const loadGameOut = document.querySelector("#dev-scanner-load-game");
+const relayOut = document.querySelector("#dev-scanner-relay");
 
 window.addEventListener("UPDATE_JOURNAL", () => {
   journalOut.textContent = JSON.stringify(window.frameShifterJournal, null, 2);
@@ -104,6 +115,10 @@ window.addEventListener("UPDATE_LOADOUT", () => {
     null,
     2
   );
+});
+
+window.addEventListener("RELAY_DEVSCANNER", (event) => {
+  relayOut.textContent = JSON.stringify(event.detail, null, 2);
 });
 
 const updateAll = () => {

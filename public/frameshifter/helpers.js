@@ -87,15 +87,13 @@ window.frameShifterHelpers.pipsToNumber = (pip) => {
 };
 
 /**
- * @function getPlayerData
- * @param  {any} value value to test if present and correct type
+ * @function testPlayerData
+ * @param  {string} value value on window to test if present and correct type
  * @param  {string} obj data type to check
  * @description check that a value is present and of expected type
  * @memberof ClientHelpers
  */
-window.frameShifterHelpers.getPlayerData = (value, type) => {
-  if (typeof value === "undefined") return null;
-
+window.frameShifterHelpers.testPlayerData = (value, type) => {
   switch (type) {
     case "boolean":
     case "object":
@@ -109,6 +107,7 @@ window.frameShifterHelpers.getPlayerData = (value, type) => {
       break;
 
     default:
+      // unsupported data type
       break;
   }
 
@@ -192,7 +191,7 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
 
   if (flagNames.includes(infoType)) {
     const flags = window.frameShifterHelpers.getBinaryFlags(
-      window.frameShifterState.status.Flags,
+      window?.frameShifterState?.status?.Flags,
       32
     );
 
@@ -215,40 +214,38 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
   if (statusNames.includes(infoType)) {
     switch (infoType) {
       case "cargo-weight":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.status.Cargo,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.status?.Cargo,
           "number"
         );
 
       case "firegroup":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.status.FireGroup,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.status?.FireGroup,
           "number"
         );
 
       case "legal-state":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.status.LegalState,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.status?.LegalState,
           "string"
         );
 
       case "fuel-main":
-        const tFuelMain = window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.status.Fuel,
-          "object"
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.status?.Fuel?.FuelMain,
+          "number"
         );
-        return tFuelMain ? tFuelMain.FuelMain : null;
 
       case "fuel-res":
-        const tFuelRes = window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.status.Fuel,
-          "object"
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.status?.Fuel?.FuelReservoir,
+          "number"
         );
-        return tFuelRes ? tFuelRes.FuelReservoir : null;
 
       case "pips-sys":
-        const tPipSys = window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.status.Pips,
+        const tPipSys = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.status?.Pips,
           "array"
         );
         return tPipSys
@@ -256,8 +253,8 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
           : null;
 
       case "pips-eng":
-        const tPipEng = window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.status.Pips,
+        const tPipEng = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.status?.Pips,
           "array"
         );
         return tPipEng
@@ -265,8 +262,8 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
           : null;
 
       case "pips-wep":
-        const tPipWep = window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.status.Pips,
+        const tPipWep = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.status?.Pips,
           "array"
         );
         return tPipWep
@@ -301,7 +298,7 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
 
   if (flag2Names.includes(infoType)) {
     const flags2 = window.frameShifterHelpers.getBinaryFlags(
-      window.frameShifterState.status.Flags2,
+      window?.frameShifterState?.status?.Flags2,
       16
     );
 
@@ -332,104 +329,104 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
   if (journalNames.includes(infoType)) {
     switch (infoType) {
       case "ship":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.Ship,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.Ship,
           "string"
         );
 
       case "ship-ident":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.ShipIdent,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.ShipIdent,
           "string"
         );
 
       case "ship-name":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.ShipName,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.ShipName,
           "string"
         );
 
       case "hull-perc":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.HullHealth,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.HullHealth,
           "number"
         );
 
       case "hull-value":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.HullValue,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.HullValue,
           "number"
         );
 
       case "hull-value":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.HullValue,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.HullValue,
           "number"
         );
 
       case "unladen-mass":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.UnladenMass,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.UnladenMass,
           "number"
         );
 
       case "fuel-main-cap":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.FuelCapacity.Main,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.FuelCapacity.Main,
           "number"
         );
 
       case "fuel-res-cap":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.FuelCapacity.Reserve,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.FuelCapacity.Reserve,
           "number"
         );
 
       case "cargo-cap":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.CargoCapacity,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.CargoCapacity,
           "number"
         );
 
       case "max-jump":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.MaxJumpRange,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.MaxJumpRange,
           "number"
         );
 
       case "rebuy":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.Rebuy,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.Rebu,
           "number"
         );
 
       case "cmdr-name":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadgame.Commander,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadgame?.Commander,
           "string"
         );
 
       case "horizons":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadgame.Horizons,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadgame?.Horizons,
           "boolean"
         );
 
       case "odyssey":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadgame.Odyssey,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadgame?.Odyssey,
           "booelan"
         );
 
       case "game-mode":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadgame.GameMode,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadgame?.GameMode,
           "string"
         );
 
       case "credits-at-load":
-        return window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadgame.Credits,
+        return window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadgame?.Credits,
           "number"
         );
 
@@ -444,13 +441,13 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
   if (comboNames.includes(infoType)) {
     switch (infoType) {
       case "fuel-main-perc":
-        const tCurrentFuel = window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.status.Fuel,
+        const tCurrentFuel = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.status?.Fuel,
           "object"
         );
 
-        const tCurrentFuelCap = window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.FuelCapacity,
+        const tCurrentFuelCap = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.FuelCapacity,
           "object"
         );
 
@@ -459,13 +456,13 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
         return null;
 
       case "fuel-res-perc":
-        const tCurrentFuelRes = window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.status.Fuel,
+        const tCurrentFuelRes = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.status?.Fuel,
           "object"
         );
 
-        const tCurrentFuelResCap = window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.FuelCapacity,
+        const tCurrentFuelResCap = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.FuelCapacity,
           "number"
         );
 
@@ -474,13 +471,13 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
         return null;
 
       case "cargo-perc":
-        const tCurrentCargo = window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.status.Cargo,
+        const tCurrentCargo = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.status?.Cargo,
           "object"
         );
 
-        const tCurrentCargoCap = window.frameShifterHelpers.getPlayerData(
-          window.frameShifterState.loadout.CargoCapacity,
+        const tCurrentCargoCap = window.frameShifterHelpers.testPlayerData(
+          window?.frameShifterState?.loadout?.CargoCapacity,
           "number"
         );
 
@@ -502,16 +499,19 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
 };
 
 /**
- * @function relayEvent
+ * @function sendRelay
  * @param  {string} eventName event name to relay, will be recieved at RELAY_EVENTNAME
  * @param  {object} data data to send along with the relay event
  * @description send data to all connected clients
  * @memberof ClientHelpers
  */
 
-window.frameShifterHelpers.relayEvent = (eventName, data) => {
-  const browserEvent = new CustomEvent(eventName.toUpperCase(), {
-    detail: data,
+window.frameShifterHelpers.sendRelay = (eventName, data) => {
+  const browserEvent = new CustomEvent("RELAY", {
+    detail: {
+      eventName,
+      data,
+    },
   });
   window.dispatchEvent(browserEvent);
 };

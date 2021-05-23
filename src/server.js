@@ -115,17 +115,18 @@ io.on("connection", (socket) => {
   if (sanitizedConfig.username) delete sanitizedConfig.username;
   if (sanitizedConfig.password) delete sanitizedConfig.password;
   socket.emit("CURRENT_CONFIG", sanitizedConfig);
-});
 
-socket.on("RELAY", (eventName, data) => {
-  socket.broadcast.emit(`RELAY_${eventName.toUpperCase()}`, data);
+  socket.on("RELAY", (eventData) => {
+    const { eventName, data } = eventData;
+    socket.broadcast.emit(`RELAY_${eventName.toUpperCase()}`, data);
+  });
 });
 
 // watch relevant status files
 
 const playerData = {};
-
 const playerJournal = [];
+
 /**
  * @param  {string} file file in journal dir to watch
  * @param  {string} property property in playerState to update
@@ -321,13 +322,13 @@ require("dns").lookup(require("os").hostname(), (_err, networkHost, _fam) => {
     FrameShifter Dashboard:
 
     >> Local:   http://127.0.0.1:${config.serverPort}
-    >> Network: http://${networkHost}:${config.serverPort}
-`);
+    >> Network: http://${networkHost}:${config.serverPort}`);
 
   const standalonePlugins = collectStandalonePlugins();
 
   if (standalonePlugins) {
-    console.log("Standalone Plugins:");
+    console.log(`
+    Standalone Plugins:`);
     standalonePlugins.forEach((standalone) => {
       console.log(
         `

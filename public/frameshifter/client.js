@@ -83,5 +83,9 @@ window.addEventListener("CURRENT_CONFIG", (_event) => {
  */
 window.addEventListener("RELAY", (event) => {
   const { detail } = event;
-  socket.emit(detail.eventName, detail.data);
+
+  socket.emit("RELAY", {
+    eventName: detail.eventName,
+    data: detail.data,
+  });
 });
