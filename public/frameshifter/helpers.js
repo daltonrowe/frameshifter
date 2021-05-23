@@ -348,10 +348,11 @@ window.frameShifterHelpers.playerInfo = (infoType) => {
         );
 
       case "hull-perc":
-        return window.frameShifterHelpers.testPlayerData(
+        const tHullPerc = window.frameShifterHelpers.testPlayerData(
           window?.frameShifterState?.loadout?.HullHealth,
           "number"
         );
+        return tHullPerc !== null ? `${tHullPerc * 100}%` : null;
 
       case "hull-value":
         return window.frameShifterHelpers.testPlayerData(
