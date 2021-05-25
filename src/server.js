@@ -82,7 +82,6 @@ const app = express();
 const http = require("http");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const { isUndefined } = require("util");
 const io = new Server(server);
 
 // basic auth
