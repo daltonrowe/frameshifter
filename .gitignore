@@ -1,6 +1,9 @@
 node_modules
 FrameShifter.exe
 
+build/*
+!build/FrameShifter.zip
+
 public/*
 
 !public/dev-scanner/
